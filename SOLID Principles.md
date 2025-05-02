@@ -21,6 +21,8 @@ class InvoicePrinter {
     }
 }
 ```
+**Note:**  
+Avoid putting printInvoice() inside Invoice. Separation of Concerns!
 
 ---
 
@@ -45,6 +47,8 @@ class InvoiceService {
     }
 }
 ```
+**Note:**  
+New discounts can we added without modifying InvoiceService.
 
 ---
 
@@ -99,6 +103,8 @@ class SimplePrinter implements Printer {
     public void print() {}
 }
 ```
+**Note:**  
+Smaller Interfaces ensure classes only implement what they need.
 
 ---
 
@@ -129,3 +135,5 @@ class NotificationService {
     }
 }
 ```
+**Note:**  
+Use interfaces(MessageSender) so we can swap out implementations(EmailSender, SmsSender, etc.) easily.
