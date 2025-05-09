@@ -16,7 +16,7 @@ This hash code may be further processed by HashMap’s internal hashing mechanis
 
 ### ✅ Step 2: Determine Index
 HashMap maintains an internal **array of buckets** (each bucket may be empty or contain a list/tree of entries).  
-The final index in the array is calculated using:
+The final index in the array is calculated using bitwise operation.
 ```java
 index = (n - 1) & hash; // where n is the length of the array
 ```
@@ -53,5 +53,3 @@ HashMap uses a **load factor** (default is **0.75**) to decide when to resize.
 | Delete        | O(1)         | O(log n)                      |
 
 ---
-
-> **Note:** Proper implementation of `hashCode()` and `equals()` in key objects is essential for correct behavior and performance of HashMap.
