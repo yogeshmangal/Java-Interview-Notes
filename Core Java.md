@@ -121,4 +121,15 @@ String s3 = new String("hello"); // Creates a new object in the heap
 | **Use of `abstract` Keyword**  | Must be explicitly added to class or method     | Not required for methods (they're abstract by default) |
 | **Performance**                | Slightly better (due to direct inheritance)     | Slightly slower (extra indirection)               |
 
+---
+
 ## 13. Difference between HashMap and HashTable:
+
+| Feature                  | HashMap                                  | Hashtable                               |
+|--------------------------|-------------------------------------------|------------------------------------------|
+| **Thread Safety**        | Not synchronized — not thread-safe       | Synchronized — thread-safe               |
+| **Performance**          | Faster in single-threaded environments    | Slower due to synchronization            |
+| **Null Keys/Values**     | Allows **one null key** and **multiple null values** | Does **not allow** null keys or values   |
+| **Use in Multithreading**| Needs external synchronization (e.g., `Collections.synchronizedMap()`) | Thread-safe by default       |
+
+---
