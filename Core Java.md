@@ -133,3 +133,45 @@ String s3 = new String("hello"); // Creates a new object in the heap
 | **Use in Multithreading**| Needs external synchronization (e.g., `Collections.synchronizedMap()`) | Thread-safe by default       |
 
 ---
+
+## 14. Can we use `this()` and `super()` together in the Same Constructor?
+No, it's **not possible** to use both `this()` and `super()` constructor calls in the same constructor block.
+
+In Java:
+- `this()` is used to call **another constructor in the same class**.
+- `super()` is used to call a **constructor of the parent class**.
+
+⚠️ **Important Rule:**  
+Only **one constructor call (`this()` or `super()`)** is allowed, and it **must be the first statement** in the constructor body.  
+Trying to use both results in a **compile-time error**.
+
+---
+
+## 🧪 Example:
+
+```java
+class Base {
+    Base() {
+        System.out.println("Hello from Base");
+    }
+}
+
+class Main extends Base {
+    Main() {
+        System.out.println("Main class constructor");
+    }
+
+    Main(int x) {
+        this();      // ✅ Calls another constructor in the same class
+        super();     // ❌ Compile-time error: constructor call must be the first statement
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Main obj = new Main(5);
+    }
+}
+```
+---
+
