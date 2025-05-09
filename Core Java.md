@@ -120,3 +120,5 @@ String s3 = new String("hello"); // Creates a new object in the heap
 | **Multiple Inheritance**       | Not supported (only one abstract class can be extended) | Supported (a class can implement multiple interfaces) |
 | **Use of `abstract` Keyword**  | Must be explicitly added to class or method     | Not required for methods (they're abstract by default) |
 | **Performance**                | Slightly better (due to direct inheritance)     | Slightly slower (extra indirection)               |
+
+## 13. Difference between HashMap and HashTable:
