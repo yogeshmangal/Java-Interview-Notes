@@ -103,4 +103,20 @@ String s3 = new String("hello"); // Creates a new object in the heap
 - **For Example:** To get input from the console, we require the Scanner class and the Scanner class is loaded by the Class Loader.
 
 ## 10. Abstract Class
-- An 
+- In Java, an Abstract class is a class that cannot be instantiated on its own and may contain the mix of abstract and concrete methods, serving as a blueprint for subclasses.
+
+## 11. Interface
+- An Interface in Java is a contract that defines a set of abstract methods that must be implemented by classes that implements the interface.
+
+## 12. Difference between Abstract class and Interface:
+
+| Feature                         | Abstract Class                                 | Interface                                         |
+|---------------------------------|-------------------------------------------------|--------------------------------------------------|
+| **Keyword Used**               | `abstract class`                                | `interface`                                       |
+| **Methods**                    | Can have abstract and non-abstract methods      | All methods are abstract by default (until Java 8) <br> Can have `default`, `static`, and `private` methods since Java 8/9 |
+| **Access Modifiers**           | Can use any access modifier (public, protected, etc.) | All methods are implicitly `public abstract` (unless `default`, `static`, or `private`) |
+| **Constructor**                | Yes                                             | No                                                |
+| **Instance Variables**         | Can have instance variables                     | Only `public static final` (constants) allowed    |
+| **Multiple Inheritance**       | Not supported (only one abstract class can be extended) | Supported (a class can implement multiple interfaces) |
+| **Use of `abstract` Keyword**  | Must be explicitly added to class or method     | Not required for methods (they're abstract by default) |
+| **Performance**                | Slightly better (due to direct inheritance)     | Slightly slower (extra indirection)               |
