@@ -10,7 +10,6 @@ Hashing is a technique where input data is processed through a **hash function**
 
 ### ✅ Step 1: Generate Hash Code
 When a key-value pair is inserted, the `hashCode()` method of the key is called to generate a hash code.  
-This hash code may be further processed by HashMap’s internal hashing mechanism to reduce collisions.
 
 ---
 
