@@ -339,3 +339,55 @@ public class Main {
 }
 ```
 ---
+
+## 17. How to Make Database Queries Fast?
+- There are several key techniques to improve the performance of database queries:
+
+### a) Indexing
+- Properly index the columns that are frequently used in `WHERE` clauses, `JOIN` conditions, and `ORDER BY` clauses.
+- Internally, indexing works by creating data structures (like B-Trees or Hash Maps) that allow for efficient retrieval of records.
+
+```sql
+-- Example: Creating an index on 'email' column
+CREATE INDEX idx_users_email ON users(email);
+```
+
+---
+
+### b) Query Optimization
+- Avoid `SELECT *`; instead, specify only the columns you need.
+- Use `WHERE` clauses to filter data as early as possible.
+- Use `LIMIT` to restrict the number of rows returned.
+
+---
+
+### c) Database Design
+- Normalize tables to reduce data redundancy.
+- Use appropriate data types for columns (e.g., use `INT` instead of `VARCHAR` for numeric data).
+
+---
+
+### d) Efficient Joins
+- Prefer `INNER JOIN` over `OUTER JOIN` when possible.
+- Ensure that columns used in `JOIN` conditions are indexed.
+
+---
+
+### e) Caching
+- Cache frequently accessed data (e.g., using Redis or in-memory cache).
+- Reduces repeated hits to the database for the same query.
+
+---
+
+### f) Connection Pooling
+- Reuse database connections using a connection pool (e.g., HikariCP in Java).
+- Reduces the overhead of establishing new connections repeatedly.
+
+```java
+// HikariCP example
+HikariDataSource ds = new HikariDataSource();
+ds.setJdbcUrl("jdbc:mysql://localhost:3306/mydb");
+ds.setUsername("root");
+ds.setPassword("password");
+```
+---
