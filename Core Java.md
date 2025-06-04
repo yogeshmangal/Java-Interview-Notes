@@ -248,5 +248,25 @@ Inside `reassign()`, the reference `p` is reassigned to a new object, but this c
 
 ---
 
+## 16. Relationships in Java
+
+- There are various types of relationships that exist between classes. Here are 3 of them:
+
+### a) Inheritance (IS-A)
+- Represents a relationship where one class (subclass or child class) derives properties and behavior from another class (superclass or parent class).
+
+### b) Composition (HAS-A)
+- Indicates that a class contains objects of another class as parts and the parts **cannot exist independently** of the whole.
+- Represents a **strong ownership** relationship.
+
+**Example:** A School and a Classroom. A classroom is a part of the school and cannot exist independently of the school.
+
+### c) Aggregation (HAS-A)
+- Similar to composition, but the parts **can exist independently** of the whole.
+- Represents a **weaker form of ownership** compared to composition.
+
+**Example:** A School and a Teacher. Teachers are associated with the school but can exist independently.
+
+---
 
 
