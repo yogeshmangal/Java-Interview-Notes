@@ -434,3 +434,6 @@ spring.datasource.hikari.minimum-idle=5
 ```
 > HikariCP is the default and high-performance connection pool used in Spring Boot.
 > It maintains active and idle connections, improving responsiveness under load.
+
+---
+
