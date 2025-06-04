@@ -255,11 +255,53 @@ Inside `reassign()`, the reference `p` is reassigned to a new object, but this c
 ### a) Inheritance (IS-A)
 - Represents a relationship where one class (subclass or child class) derives properties and behavior from another class (superclass or parent class).
 
+```java
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.sound(); // Inherited from Animal
+        dog.bark();
+    }
+}
+```
+
+---
+
 ### b) Composition (HAS-A)
 - Indicates that a class contains objects of another class as parts and the parts **cannot exist independently** of the whole.
 - Represents a **strong ownership** relationship.
 
 **Example:** A School and a Classroom. A classroom is a part of the school and cannot exist independently of the school.
+
+```java
+class Classroom {
+    void conductClass() {
+        System.out.println("Class is in session");
+    }
+}
+
+class School {
+    private Classroom classroom = new Classroom(); // Strongly owned
+
+    void startDay() {
+        classroom.conductClass();
+    }
+}
+```
+
+---
 
 ### c) Aggregation (HAS-A)
 - Similar to composition, but the parts **can exist independently** of the whole.
@@ -267,6 +309,33 @@ Inside `reassign()`, the reference `p` is reassigned to a new object, but this c
 
 **Example:** A School and a Teacher. Teachers are associated with the school but can exist independently.
 
+```java
+class Teacher {
+    void teach() {
+        System.out.println("Teacher is teaching");
+    }
+}
+
+class School {
+    private Teacher teacher; // Can be shared, not tightly owned
+
+    School(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    void conductClass() {
+        teacher.teach();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Teacher t = new Teacher();
+        School s1 = new School(t);
+        School s2 = new School(t); // Same teacher used in different schools
+        s1.conductClass();
+        s2.conductClass();
+    }
+}
+```
 ---
-
-
