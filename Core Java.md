@@ -135,7 +135,7 @@ String s3 = new String("hello"); // Creates a new object in the heap
 ---
 
 ## 14. Can we use `this()` and `super()` together in the Same Constructor?
-No, it's **not possible** to use both `this()` and `super()` constructor calls in the same constructor block.
+- No, it's **not possible** to use both `this()` and `super()` constructor calls in the same constructor block.
 
 In Java:
 - `this()` is used to call **another constructor in the same class**.
@@ -174,4 +174,79 @@ public class Program {
 }
 ```
 ---
+
+## 15. Java works as `pass by value` or `pass by reference`?
+- Java **always works as `pass by value`**. There is **no concept of `pass by reference`** in Java.
+- However, **in the case of objects**, when passed to a method, **a copy of the reference (not the actual object)** is passed.
+- This reference still points to the **same object in memory**, so if the object's internal state is changed inside the method, the changes are **visible outside** the method.
+
+### 🔍 In Layman's Terms:
+> When you pass an object to a method in Java, you're passing a **copy of the reference** to that object—not the object itself.  
+> Both the original and copied references point to the **same memory location**, which is why changes made to the object inside the method are reflected outside.  
+> But you **cannot reassign the original reference** from inside the method, as only a copy was passed.
+
+---
+
+### ✅ Code Example 1: Modifying object state
+
+```java
+class Person {
+    String name;
+}
+
+public class Test {
+    public static void changeName(Person p) {
+        p.name = "John";
+    }
+
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.name = "Alice";
+
+        changeName(person);
+
+        System.out.println(person.name); // Output: John
+    }
+}
+```
+**Explanation:**  
+Even though `person` was passed by value (copy of reference), the internal state (`name`) was modified because both references point to the same object.
+
+---
+
+### ❌ Code Example 2: Trying to reassign object
+
+```java
+class Person {
+    String name;
+}
+
+public class Test {
+    public static void reassign(Person p) {
+        p = new Person();
+        p.name = "Bob";
+    }
+
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.name = "Alice";
+
+        reassign(person);
+
+        System.out.println(person.name); // Output: Alice
+    }
+}
+```
+**Explanation:**  
+Inside `reassign()`, the reference `p` is reassigned to a new object, but this change does **not affect** the original `person` in `main()`, because only a **copy** of the reference was passed.
+
+---
+
+### ✅ Final Conclusion:
+> Java is strictly **pass-by-value**.  
+> For objects, the **value passed is a reference**, so Java **appears** to have pass-by-reference behavior—but it's still just passing a **copy of the reference**.
+
+---
+
+
 
