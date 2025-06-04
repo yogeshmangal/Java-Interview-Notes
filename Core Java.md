@@ -391,3 +391,44 @@ ds.setUsername("root");
 ds.setPassword("password");
 ```
 ---
+
+## 18. What is Connection Pooling?
+- Connection pooling is a technique used to **reuse database connections** instead of creating and destroying them repeatedly. It maintains a **pool of open connections**, which can be reused by applications to communicate with the database.
+
+### 🔹 Why is it needed?
+Establishing a database connection is a **costly and time-consuming operation**. Without pooling:
+- Every request opens a new connection → high overhead.
+- More chances of resource exhaustion.
+- Increased latency in high-traffic applications.
+
+With pooling:
+- Connections are reused → faster query execution.
+- Reduces database load and improves application performance.
+- Efficient use of resources.
+
+---
+
+### 🔹 How it works:
+1. A connection pool is initialized with a **predefined number of open connections**.
+2. When the application needs to interact with the DB:
+   - It **borrows a connection** from the pool.
+3. Once done:
+   - The connection is **returned to the pool** instead of being closed.
+4. If no connections are available:
+   - The application waits or creates new connections based on configuration.
+
+---
+
+### 🔹 Example: HikariCP in Java (Spring Boot)
+
+```java
+// application.properties
+
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+spring.datasource.username=root
+spring.datasource.password=password
+spring.datasource.hikari.maximum-pool-size=10
+spring.datasource.hikari.minimum-idle=5
+```
+> HikariCP is the default and high-performance connection pool used in Spring Boot.
+> It maintains active and idle connections, improving responsiveness under load.
