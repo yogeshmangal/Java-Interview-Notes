@@ -437,3 +437,79 @@ spring.datasource.hikari.minimum-idle=5
 
 ---
 
+## ✅ 19. Functional Interface
+
+- A **Functional Interface** is an interface that contains **only one abstract method**.
+- Example:
+```java
+interface A {
+    void show();
+}
+```
+- The above interface is a functional interface.
+
+- To enforce that an interface must remain a functional interface, Java provides the `@FunctionalInterface` annotation.
+- This annotation causes a **compile-time error** if more than one abstract method is declared.
+
+Example:
+```java
+@FunctionalInterface
+interface A {
+    void show(); // Only one abstract method allowed
+}
+```
+
+- But there's a small inconvenience — even with one abstract method, we usually need to create a separate class to implement the interface.
+- To solve this, Java 7 introduced **Anonymous Classes**.
+
+---
+
+## ✅ 20. Anonymous Class
+
+- An **Anonymous Class** is a class declared and instantiated **at the same time**.
+- It is commonly used to provide **method implementations** for interfaces or classes **without explicitly creating a separate class**.
+
+### Example with Interface:
+```java
+@FunctionalInterface
+interface Demo {
+    void roar();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Demo demo = new Demo() {
+            public void roar() {
+                System.out.println("Roaring");
+            }
+        };
+        demo.roar();
+    }
+}
+```
+**Output:** `Roaring`
+
+---
+
+### Example with Class:
+```java
+class Demo {
+    void hello() {
+        System.out.println("Hello");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Demo demo = new Demo() {
+            public void hello() {
+                System.out.println("Hey");
+            }
+        };
+        demo.hello();
+    }
+}
+```
+**Output:** `Hey`
+
+---
