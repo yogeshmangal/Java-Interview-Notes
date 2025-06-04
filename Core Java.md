@@ -396,12 +396,13 @@ ds.setPassword("password");
 - Connection pooling is a technique used to **reuse database connections** instead of creating and destroying them repeatedly. It maintains a **pool of open connections**, which can be reused by applications to communicate with the database.
 
 ### 🔹 Why is it needed?
-Establishing a database connection is a **costly and time-consuming operation**. Without pooling:
+Establishing a database connection is a **costly and time-consuming operation**. 
+- **Without pooling:**
 - Every request opens a new connection → high overhead.
 - More chances of resource exhaustion.
 - Increased latency in high-traffic applications.
 
-With pooling:
+- **With pooling:**
 - Connections are reused → faster query execution.
 - Reduces database load and improves application performance.
 - Efficient use of resources.
