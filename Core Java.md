@@ -526,7 +526,7 @@ public class Main {
 (parameters) -> expression
 ```
 
-### Example:
+### Example without parameters
 
 ```java
 @FunctionalInterface
@@ -546,3 +546,22 @@ public class Main {
 
 ---
 
+### Example with parameters
+
+```java
+@FunctionalInterface
+interface A {
+    void show(int x);
+}
+
+public class Main {
+    public static void main(String[] args) {
+        A obj = (int x) -> System.out.println(x);
+        obj.show(x);
+    }
+}
+```
+
+**Output:** `5`
+
+---
