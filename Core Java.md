@@ -437,7 +437,7 @@ spring.datasource.hikari.minimum-idle=5
 
 ---
 
-## ✅ 19. Functional Interface
+## 19. Functional Interface
 
 - A **Functional Interface** is an interface that contains **only one abstract method**.
 - Example:
@@ -464,7 +464,7 @@ interface A {
 
 ---
 
-## ✅ 20. Anonymous Class
+## 20. Anonymous Class
 
 - An **Anonymous Class** is a class declared and instantiated **at the same time**.
 - It is commonly used to provide **method implementations** for interfaces or classes **without explicitly creating a separate class**.
@@ -513,3 +513,36 @@ public class Main {
 **Output:** `Hey`
 
 ---
+
+## 21. Lambda Expressions
+- When using **Functional Interfaces** with **Anonymous Classes**, we end up writing boilerplate code, even though only one method exists.
+- To simplify this, **Java 8 introduced Lambda Expressions**.
+- A **Lambda Expression** provides a clear and concise way to represent the **single abstract method** of a functional interface.
+- 💡 **Note:** Lambda Expressions can be used **only with Functional Interfaces**.
+
+### Syntax:
+
+```java
+(parameters) -> expression
+```
+
+### Example:
+
+```java
+@FunctionalInterface
+interface A {
+    void show();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        A obj = () -> System.out.println("Hello");
+        obj.show();
+    }
+}
+```
+
+**Output:** `Hello`
+
+---
+
