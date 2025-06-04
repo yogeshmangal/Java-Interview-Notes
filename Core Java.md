@@ -397,12 +397,12 @@ ds.setPassword("password");
 
 ### 🔹 Why is it needed?
 Establishing a database connection is a **costly and time-consuming operation**. 
-- **Without pooling:**
+**Without pooling:**
 - Every request opens a new connection → high overhead.
 - More chances of resource exhaustion.
 - Increased latency in high-traffic applications.
 
-- **With pooling:**
+**With pooling:**
 - Connections are reused → faster query execution.
 - Reduces database load and improves application performance.
 - Efficient use of resources.
