@@ -557,11 +557,60 @@ interface A {
 public class Main {
     public static void main(String[] args) {
         A obj = (int x) -> System.out.println(x);
-        obj.show(x);
+        obj.show(5);
     }
 }
 ```
 
 **Output:** `5`
+
+---
+
+## 22. Thread Pool vs Event Loop
+
+### 🔹 Thread Pool
+- A **Thread Pool** is a collection of pre-created threads that are reused to execute multiple tasks.
+- Instead of creating a new thread for every task, the CPU assigns tasks to available **worker threads** from the pool.
+- This improves performance by reducing thread creation overhead.
+
+### 🔸 When Does the CPU Create a Thread in Java?
+- **Without Thread Pool**: Java creates a new thread for every task — inefficient and resource-heavy.
+- **With Thread Pool**: Java creates a fixed number of threads initially, which are reused.
+- **Event Loop**: Java (or other systems) use **a single thread** that handles multiple tasks asynchronously.
+
+### 🔹 How Thread Pool Works
+- A fixed number of worker threads are created at the start.
+- Tasks are submitted to the pool and assigned to available threads.
+- If all threads are busy, new tasks wait in a **queue**.
+- Once a thread finishes its task, it picks the next one from the queue.
+
+✅ Example:
+```java
+ExecutorService executor = Executors.newFixedThreadPool(3);
+```
+
+---
+
+### 🔹 Event Loop
+- An **Event Loop** is a concurrency model where a **single thread** handles multiple tasks asynchronously.
+- It does **not create multiple threads**, but instead waits for tasks (like I/O) to complete and then runs their callbacks.
+- Ideal for **I/O-bound operations** like network requests, file reads, etc.
+
+✅ Example:
+```java
+CompletableFuture.runAsync(() -> {
+    // some async task
+});
+```
+
+---
+
+### ✅ When to Use What?
+
+| Use Case                          | Recommended Model |
+|----------------------------------|-------------------|
+| CPU-bound tasks (e.g., computations) | Thread Pool        |
+| I/O-bound tasks (e.g., HTTP calls)   | Event Loop         |
+| Async, non-blocking architecture     | Event Loop         |
 
 ---
