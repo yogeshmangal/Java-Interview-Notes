@@ -36,7 +36,7 @@
 ## 4. Thread Lifecycle
 - A thread in Java goes through the following **five main stages** during its lifecycle:
 
-### (i). **New**
+### (i) **New**
 - The thread is created but not yet started.
 - This happens when you create a thread object using `new Thread()`.
 
@@ -46,7 +46,7 @@ Thread t1 = new Thread(); // New state
 
 ---
 
-### (ii). **Runnable**
+### (ii) **Runnable**
 - After calling `start()`, the thread moves to the **Runnable** state.
 - The thread is ready to run but is waiting for CPU scheduling.
 
@@ -56,7 +56,7 @@ t1.start(); // Moves to Runnable state
 
 ---
 
-### (iii). **Running**
+### (iii) **Running**
 - The thread scheduler picks the thread from the runnable pool and gives it CPU.
 - Now the thread is actively executing its task.
 
@@ -64,7 +64,7 @@ t1.start(); // Moves to Runnable state
 
 ---
 
-### (iv). **Blocked / Waiting / Timed Waiting (Non-Runnable)**
+### (iv) **Blocked / Waiting / Timed Waiting (Non-Runnable)**
 - The thread is **not eligible** for running due to one of the following:
   - Waiting for a monitor lock (Blocked)
   - Waiting indefinitely (`wait()`)
@@ -72,7 +72,7 @@ t1.start(); // Moves to Runnable state
 
 ---
 
-### (v). **Terminated (Dead)**
+### (v) **Terminated (Dead)**
 - Once the `run()` method finishes execution or the thread is stopped, it enters the **terminated** state.
 
 ---
@@ -85,5 +85,73 @@ t1.start(); // Moves to Runnable state
 
 > ?? **Pro Tip:**  
 > You cannot restart a dead thread. Once terminated, a thread object cannot be started again - doing so results in `IllegalThreadStateException`.
+
+---
+
+## 5. How to Create Threads in Java?
+- In Java, there are **two primary ways** to create threads:
+
+### a) By Extending the `Thread` Class
+- You can create a new thread by extending the built-in `Thread` class and overriding its `run()` method.
+
+#### ? Example:
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        // Task for the thread
+        System.out.println("Thread is running...");
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.start(); // Starts the thread
+    }
+}
+```
+
+#### ?? Notes:
+- The `Thread` class internally implements the `Runnable` interface.
+- A thread can only be started **once** using `.start()`. Calling `start()` again on the same thread object will throw:
+
+```java
+IllegalThreadStateException
+```
+
+---
+
+### b) By Implementing the `Runnable` Interface
+- This is the best approach to create Thread as it promotes better design and allows your class to extend another class (Java does not support multiple inheritance).
+
+#### ? Example:
+```java
+class Test implements Runnable {
+    @Override
+    public void run() {
+        // Task for the thread
+        System.out.println("Thread is running...");
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Test t = new Test();
+        Thread th = new Thread(t);
+        th.start(); // Starts the thread
+    }
+}
+```
+
+#### ? Advantages of Using `Runnable`:
+- Better separation of task (logic) from thread management.
+- More flexible, especially when your class already extends another class.
+- Encourages reusability and avoids tight coupling.
+
+---
+
+> ?? **Pro Tip:**  
+> Always prefer implementing `Runnable` over extending `Thread` unless you need to override other `Thread` methods.
 
 ---
