@@ -155,3 +155,98 @@ public class Program {
 > Always prefer implementing `Runnable` over extending `Thread` unless you need to override other `Thread` methods.
 
 ---
+
+## 6. Different Cases of Executing Threads
+- In Java, there are **four common execution cases** while working with threads:
+
+### a) Performing Single Task from a Single Thread
+
+? Example:
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Thread Task");
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.start();
+    }
+}
+```
+
+---
+
+### b) Performing Single Task from Multiple Threads
+
+? Example:
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Thread Task");
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Test t1 = new Test();
+        t1.start();
+
+        Test t2 = new Test();
+        t2.start();
+    }
+}
+```
+
+?? **Note:**  
+Even though we are creating only two threads (t1 and t2), Java internally also has the **main thread**.  
+So a total of **three threads** will be running: `main`, `t1`, and `t2`.
+
+---
+
+### c) Performing Multiple Tasks from a Single Thread
+
+? Not Possible:
+- A single thread executes only one task at a time.
+- To perform multiple tasks concurrently, multiple threads are required.
+
+---
+
+### d) Performing Multiple Tasks from Multiple Threads
+
+? Example:
+```java
+class MyThread1 extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Task1");
+    }
+}
+
+class MyThread2 extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Task2");
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        MyThread1 t1 = new MyThread1();
+        t1.start();
+
+        MyThread2 t2 = new MyThread2();
+        t2.start();
+    }
+}
+```
+
+?? **Note:**  
+The **order of execution** between `t1` and `t2` is **not guaranteed**.  
+The **JVM thread scheduler** decides which thread to run first based on underlying OS algorithms.
+
+---
