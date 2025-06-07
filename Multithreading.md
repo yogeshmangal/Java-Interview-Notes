@@ -32,3 +32,63 @@
 > - Processes are more isolated and secure, whereas threads are more efficient in terms of resource usage.
 
 ---
+
+## 4. Thread Lifecycle
+- A thread in Java goes through the following **five main stages** during its lifecycle:
+
+### (i). **New**
+- The thread is created but not yet started.
+- This happens when you create a thread object using `new Thread()`.
+
+```java
+Thread t1 = new Thread(); // New state
+```
+
+---
+
+### (ii). **Runnable**
+- After calling `start()`, the thread moves to the **Runnable** state.
+- The thread is ready to run but is waiting for CPU scheduling.
+
+```java
+t1.start(); // Moves to Runnable state
+```
+
+---
+
+### (iii). **Running**
+- The thread scheduler picks the thread from the runnable pool and gives it CPU.
+- Now the thread is actively executing its task.
+
+> Note: The exact time a thread spends in this state is decided by the **JVM thread scheduler**, which depends on OS-level algorithms.
+
+---
+
+### (iv). **Blocked / Waiting / Timed Waiting (Non-Runnable)**
+- The thread is **not eligible** for running due to one of the following:
+  - Waiting for a monitor lock (Blocked)
+  - Waiting indefinitely (`wait()`)
+  - Waiting for a specific time (`sleep()` / `join(timeout)`)
+
+---
+
+### (v). **Terminated (Dead)**
+- Once the `run()` method finishes execution or the thread is stopped, it enters the **terminated** state.
+
+---
+
+### ?? Summary Diagram (Textual)
+```
+NEW --> RUNNABLE --> RUNNING --> DEAD
+                   ?
+                NON-RUNNABLE (Blocked/Waiting)
+                   ?
+               back to RUNNABLE
+```
+
+---
+
+> ?? **Pro Tip:**  
+> You cannot restart a dead thread. Once terminated, a thread object cannot be started again - doing so results in `IllegalThreadStateException`.
+
+---
