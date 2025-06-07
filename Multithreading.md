@@ -161,7 +161,7 @@ public class Program {
 
 ### a) Performing Single Task from a Single Thread
 
-? Example:
+Example:
 ```java
 class Test extends Thread {
     @Override
@@ -182,7 +182,7 @@ public class Program {
 
 ### b) Performing Single Task from Multiple Threads
 
-? Example:
+Example:
 ```java
 class Test extends Thread {
     @Override
@@ -202,15 +202,15 @@ public class Program {
 }
 ```
 
-?? **Note:**  
-Even though we are creating only two threads (t1 and t2), Java internally also has the **main thread**.  
-So a total of **three threads** will be running: `main`, `t1`, and `t2`.
+**Note:**  
+- Even though we are creating only two threads (t1 and t2), Java internally also has the **main thread**.  
+- So a total of **three threads** will be running: `main`, `t1`, and `t2`.
 
 ---
 
 ### c) Performing Multiple Tasks from a Single Thread
 
-? Not Possible:
+- This case is Not Possible:
 - A single thread executes only one task at a time.
 - To perform multiple tasks concurrently, multiple threads are required.
 
@@ -218,7 +218,7 @@ So a total of **three threads** will be running: `main`, `t1`, and `t2`.
 
 ### d) Performing Multiple Tasks from Multiple Threads
 
-? Example:
+Example:
 ```java
 class MyThread1 extends Thread {
     @Override
@@ -245,8 +245,8 @@ public class Program {
 }
 ```
 
-?? **Note:**  
-The **order of execution** between `t1` and `t2` is **not guaranteed**.  
-The **JVM thread scheduler** decides which thread to run first based on underlying OS algorithms.
+**Note:**  
+- The **order of execution** between `t1` and `t2` is **not guaranteed**.  
+- The **JVM thread scheduler** decides which thread to run first based on underlying OS algorithms.
 
 ---
