@@ -79,12 +79,12 @@ t1.start(); // Moves to Runnable state
 
 ### ?? Summary Diagram (Textual)
 ```
-NEW ----> RUNNABLE ----> RUNNING ----> DEAD
-                      ^  |
-					  |	 V
-                   NON-RUNNABLE (Blocked/Waiting)
+NEW --> RUNNABLE --> RUNNING --> DEAD
+                   ?
+                NON-RUNNABLE (Blocked/Waiting)
+                   ?
+               back to RUNNABLE
 ```
-
 
 ---
 
