@@ -78,8 +78,8 @@ t1.start(); // Moves to Runnable state
 ---
 
 ### Summary Diagram (Textual)
--Refer to the following diagram for visual understanding of the thread lifecycle:  
-?? [Diagram(1).png](https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Diagram(1).png)
+- Refer to the following diagram for visual understanding of the thread lifecycle:  
+[Diagram(1).png](https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Diagram(1).png)
 
 ---
 
