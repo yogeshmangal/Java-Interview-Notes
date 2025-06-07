@@ -77,7 +77,7 @@ t1.start(); // Moves to Runnable state
 
 ---
 
-### ?? Summary Diagram (Textual)
+### Summary Diagram (Textual)
 ```
 Refer Diagram(1).png
 ```
