@@ -79,7 +79,7 @@ t1.start(); // Moves to Runnable state
 
 ### Summary Diagram (Textual)
 - Refer to the following diagram for visual understanding of the thread lifecycle:  
-[Diagram(1).png](https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Diagram(1).png)
+[Thread-Lifecycle.png](https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Thread-Lifecycle.png)
 
 ---
 
@@ -250,3 +250,71 @@ public class Program {
 - The **JVM thread scheduler** decides which thread to run first based on underlying OS algorithms.
 
 ---
+
+## 7. Thread class Methods?
+- There are several Thread class Methods:
+
+### Basic Methods:
+- run()
+- start()
+- currentThread()
+- isAlive()
+
+### Naming Related Methods:
+- getName()
+- setName(String name)
+
+### Daemon Thread Methods:
+- isDaemon()
+- setDaemon(boolean b)
+
+### Priority Related Methods:
+- getPriority()
+- setPriority(int priority)
+
+### Preventing Thread Execution Methods:
+- sleep()
+- yield()
+- join()
+
+### Thread Interruption Methods:
+- interupt()
+- isInterupted()
+- interupted()
+
+### Inter Thread Communication(Not part of Thread class but are present in object class)
+- wait()
+- notify()
+- notifyAll()
+
+---
+
+### Basic and Naming Threads(run(), start(), currentThread(), isAlive(), getName() and setName()):
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Thread name is: " + Thread.currentThread().getName());
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getName());
+
+        Test t1 = new Test();
+        t1.start();
+
+        Test t2 = new Test();
+        t2.start();
+
+        t1.setName("T1_Thread");
+        System.out.println("t1 is Alive?: " + t1.isAlive());
+    }
+}
+```
+
+---
+
+### Daemon Threads(isDaemon() and setDaemon())
+- 
