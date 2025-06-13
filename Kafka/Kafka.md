@@ -92,7 +92,7 @@ Producers --> Kafka Cluster (Brokers + Zookeeper) --> Consumers
 
 ### Kafka Architecture Diagram
 - Refer to the following diagram for visual understanding of the Kafka Architecture:  
-[Kafka-Architecture.png](https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Kafka-Architecture.png)
+[Kafka-Architecture.png](https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Kafka/Kafka-Architecture.png)
 
 ---
 
