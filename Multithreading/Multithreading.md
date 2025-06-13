@@ -251,45 +251,50 @@ public class Program {
 
 ---
 
-## 7. Thread class Methods?
-- There are several Thread class Methods:
-
-### Basic Methods:
-- run()
-- start()
-- currentThread()
-- isAlive()
-
-### Naming Related Methods:
-- getName()
-- setName(String name)
-
-### Daemon Thread Methods:
-- isDaemon()
-- setDaemon(boolean b)
-
-### Priority Related Methods:
-- getPriority()
-- setPriority(int priority)
-
-### Preventing Thread Execution Methods:
-- sleep()
-- yield()
-- join()
-
-### Thread Interruption Methods:
-- interupt()
-- isInterupted()
-- interupted()
-
-### Inter Thread Communication(Not part of Thread class but are present in object class)
-- wait()
-- notify()
-- notifyAll()
+## 7. Thread Class Methods
+- The `Thread` class provides several methods to manage threads in Java:
 
 ---
 
-### Basic and Naming Threads(run(), start(), currentThread(), isAlive(), getName() and setName()):
+### ?? Basic Methods:
+- `run()` - Code that the thread executes.
+- `start()` - Starts the execution of the thread.
+- `currentThread()` - Returns a reference to the currently executing thread.
+- `isAlive()` - Checks if the thread is alive (i.e., started and not yet terminated).
+
+### ?? Naming Related Methods:
+- `getName()` - Gets the name of the thread.
+- `setName(String name)` - Sets the name of the thread.
+
+### ?? Daemon Thread Methods:
+- `isDaemon()` - Checks if the thread is a daemon thread.
+- `setDaemon(boolean b)` - Marks the thread as a daemon thread.
+
+### ?? Priority Related Methods:
+- `getPriority()` - Gets the priority of the thread.
+- `setPriority(int priority)` - Sets the priority of the thread.
+
+### ?? Preventing Thread Execution Methods:
+- `sleep(long millis)` - Pauses execution for specified milliseconds.
+- `yield()` - Causes the currently executing thread to temporarily pause and allow other threads to execute.
+- `join()` - Waits for the thread to die.
+
+### ?? Thread Interruption Methods:
+- `interrupt()` - Interrupts the thread.
+- `isInterrupted()` - Checks if the thread has been interrupted.
+- `interrupted()` - Static method that checks the current thread's interrupt status and clears it.
+
+### ?? Inter-Thread Communication (from `Object` class, not `Thread` class):
+- `wait()`
+- `notify()`
+- `notifyAll()`
+
+---
+
+## ?? Examples
+
+### 1?? Basic and Naming Methods (`run()`, `start()`, `currentThread()`, `isAlive()`, `getName()`, `setName()`):
+
 ```java
 class Test extends Thread {
     @Override
@@ -313,7 +318,8 @@ public class Program {
     }
 }
 ```
-**Output:**
+
+**Sample Output:**
 ```
 main
 Thread name is: T1_Thread
@@ -323,5 +329,35 @@ t1 is Alive?: true
 
 ---
 
-### Daemon Threads(isDaemon() and setDaemon())
-- 
+### 2?? Daemon Threads (`isDaemon()`, `setDaemon(boolean b)`):
+
+- **Daemon Threads** are the threads which run in the background of another thread. It provides services to other threads.
+
+**Examples of Daemon Threads:**
+- Garbage Collector
+- Finalizer
+- Attach Listeners
+- Signal Dispatchers
+- Spelling Checkers in MS Word
+
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Child Thread");
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.setDaemon(true);
+        t.start();
+    }
+}
+```
+
+**Note:**  
+- You cannot mark the main thread as a daemon because it is created and started by the JVM.
+
+---
