@@ -330,7 +330,6 @@ t1 is Alive?: true
 ---
 
 ### Daemon Threads (`isDaemon()`, `setDaemon(boolean b)`):
-
 - **Daemon Threads** are the threads which run in the background of another thread. It provides services to other threads.
 
 **Examples of Daemon Threads:**
@@ -359,5 +358,52 @@ public class Program {
 
 **Note:**  
 - You cannot mark the main thread as a daemon because it is created and started by the JVM.
+
+---
+
+### Priority Threads (`setPriority(int priority)`, `getPriority()`)
+
+- Each thread has its own **priority** which can influence how the JVM schedules threads.
+- Priorities are integer values from **1 to 10**:
+
+| Priority Constant | Value |
+|-------------------|-------|
+| `Thread.MIN_PRIORITY` | 1 |
+| `Thread.NORM_PRIORITY` | 5 (default) |
+| `Thread.MAX_PRIORITY` | 10 |
+
+#### Notes:
+- Priorities are **inherited from parent threads**.
+- By default, the **main thread** has priority `5`.
+- Thread priorities are **hints** to the JVM scheduler. On some platforms (e.g. Windows), priorities may have little or no effect.
+
+#### Example:
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Child Thread");
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getPriority());
+
+        Test t = new Test();
+        t.setPriority(10);
+        t.start();
+
+        System.out.println(t.getPriority());
+    }
+}
+```
+
+**Sample Output:**
+```
+5
+10
+Child Thread
+```
 
 ---
