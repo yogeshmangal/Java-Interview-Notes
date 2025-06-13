@@ -256,44 +256,44 @@ public class Program {
 
 ---
 
-### ?? Basic Methods:
+### a) Basic Methods:
 - `run()` - Code that the thread executes.
 - `start()` - Starts the execution of the thread.
 - `currentThread()` - Returns a reference to the currently executing thread.
 - `isAlive()` - Checks if the thread is alive (i.e., started and not yet terminated).
 
-### ?? Naming Related Methods:
+### b) Naming Related Methods:
 - `getName()` - Gets the name of the thread.
 - `setName(String name)` - Sets the name of the thread.
 
-### ?? Daemon Thread Methods:
+### c) Daemon Thread Methods:
 - `isDaemon()` - Checks if the thread is a daemon thread.
 - `setDaemon(boolean b)` - Marks the thread as a daemon thread.
 
-### ?? Priority Related Methods:
+### d) Priority Related Methods:
 - `getPriority()` - Gets the priority of the thread.
 - `setPriority(int priority)` - Sets the priority of the thread.
 
-### ?? Preventing Thread Execution Methods:
+### e) Preventing Thread Execution Methods:
 - `sleep(long millis)` - Pauses execution for specified milliseconds.
 - `yield()` - Causes the currently executing thread to temporarily pause and allow other threads to execute.
 - `join()` - Waits for the thread to die.
 
-### ?? Thread Interruption Methods:
+### f) Thread Interruption Methods:
 - `interrupt()` - Interrupts the thread.
 - `isInterrupted()` - Checks if the thread has been interrupted.
 - `interrupted()` - Static method that checks the current thread's interrupt status and clears it.
 
-### ?? Inter-Thread Communication (from `Object` class, not `Thread` class):
+### g) Inter-Thread Communication (from `Object` class, not `Thread` class):
 - `wait()`
 - `notify()`
 - `notifyAll()`
 
 ---
 
-## ?? Examples
+## Examples
 
-### 1?? Basic and Naming Methods (`run()`, `start()`, `currentThread()`, `isAlive()`, `getName()`, `setName()`):
+### Basic and Naming Methods (`run()`, `start()`, `currentThread()`, `isAlive()`, `getName()`, `setName()`):
 
 ```java
 class Test extends Thread {
@@ -329,7 +329,7 @@ t1 is Alive?: true
 
 ---
 
-### 2?? Daemon Threads (`isDaemon()`, `setDaemon(boolean b)`):
+### Daemon Threads (`isDaemon()`, `setDaemon(boolean b)`):
 
 - **Daemon Threads** are the threads which run in the background of another thread. It provides services to other threads.
 
