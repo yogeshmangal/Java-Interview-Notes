@@ -313,6 +313,13 @@ public class Program {
     }
 }
 ```
+**Output:**
+```
+main
+Thread name is: T1_Thread
+Thread name is: Thread-1
+t1 is Alive?: true
+```
 
 ---
 
