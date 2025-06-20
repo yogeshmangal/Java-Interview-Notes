@@ -293,7 +293,7 @@ public class Program {
 
 ## Examples
 
-### Basic and Naming Methods (`run()`, `start()`, `currentThread()`, `isAlive()`, `getName()`, `setName()`):
+### i) Basic and Naming Methods (`run()`, `start()`, `currentThread()`, `isAlive()`, `getName()`, `setName()`):
 
 ```java
 class Test extends Thread {
@@ -329,7 +329,7 @@ t1 is Alive?: true
 
 ---
 
-### Daemon Threads (`isDaemon()`, `setDaemon(boolean b)`):
+### ii) Daemon Threads (`isDaemon()`, `setDaemon(boolean b)`):
 - **Daemon Threads** are the threads which run in the background of another thread. It provides services to other threads.
 
 **Examples of Daemon Threads:**
@@ -361,7 +361,7 @@ public class Program {
 
 ---
 
-### Priority Threads (`setPriority(int priority)`, `getPriority()`)
+### iii) Priority Threads (`setPriority(int priority)`, `getPriority()`)
 
 - Each thread has its own **priority** which can influence how the JVM schedules threads.
 - Priorities are integer values from **1 to 10**:
@@ -405,5 +405,127 @@ public class Program {
 10
 Child Thread
 ```
+
+---
+
+### iv) Preventing Thread Execution Methods (`sleep(long millis)`, `yield()`, `join()`)
+
+These methods help manage the execution timing and coordination of threads.
+
+---
+
+#### `sleep(long millis)`
+
+- Causes the current thread to pause execution for the specified duration (in milliseconds).
+- It throws `InterruptedException` if the thread is interrupted while sleeping.
+
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            try {
+                System.out.println(i);
+                Thread.sleep(1000); // Sleeps for 1 second
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.start();
+    }
+}
+```
+
+---
+
+#### `yield()`
+
+- Stop the currently executing thread and give a chance for other waiting threads of the same priority to execute.
+- It's a hint to the scheduler and doesn't guarantee immediate yielding.
+
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(Thread.currentThread().getName() + " 0" + i);
+        }
+    }
+}
+
+public class Program {
+    public static void main(String[] args) throws InterruptedException {
+        Test t = new Test();
+        t.start();
+
+        Thread.yield(); // Suggests yielding CPU to another thread
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Main Thread " + i);
+        }
+    }
+}
+```
+
+---
+
+#### `join()`
+
+- Used when one thread wants to wait for another thread to finish before continuing.
+- It blocks the calling thread until the target thread has completed execution.
+
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            try {
+                System.out.println("Child Thread " + i);
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
+public class Program {
+    public static void main(String[] args) throws InterruptedException {
+        Test t = new Test();
+        t.start();
+        t.join(); // Main thread waits for t to finish
+
+        try {
+            for (int i = 1; i <= 5; i++) {
+                System.out.println("Main Thread " + i);
+                Thread.sleep(1000);
+            }
+        } catch (Exception ex) {
+        }
+    }
+}
+```
+
+**Sample Output:**
+```
+Child Thread 1
+Child Thread 2
+Child Thread 3
+Child Thread 4
+Child Thread 5
+Main Thread 1
+Main Thread 2
+Main Thread 3
+Main Thread 4
+Main Thread 5
+```
+
+**Note:** Using `join()` ensures that the **main thread waits** for the **child thread** to complete its task before continuing.
 
 ---
