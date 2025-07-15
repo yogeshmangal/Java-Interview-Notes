@@ -281,8 +281,8 @@ public class Program {
 
 ### f) Thread Interruption Methods:
 - `interrupt()` - Interrupts the thread.
-- `isInterrupted()` - Checks if the thread has been interrupted.
 - `interrupted()` - Static method that checks the current thread's interrupt status and clears it.
+- `isInterrupted()` - Checks if the thread has been interrupted.
 
 ### g) Inter-Thread Communication (from `Object` class, not `Thread` class):
 - `wait()`
@@ -527,5 +527,97 @@ Main Thread 5
 ```
 
 **Note:** Using `join()` ensures that the **main thread waits** for the **child thread** to complete its task before continuing.
+
+---
+
+### v) Thread Interruption Methods: (`interrupt()`, `interrupted()`, `isInterrupted()`)
+
+#### `interrupt()`
+
+- It is used to interrupt an executing thread.
+- interrupt() method will only works when the thread is in sleeping or waiting state.
+- If a thread is not in sleeping or waiting state then calling an interrupt() method will perform normal behavior.
+- When we use an interrupt() method, it throws an InterruptedException.
+
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        try {
+            for (int i = 1; i <= 5; i++) {
+                System.out.println(i);
+                Thread.sleep(1000);
+            }
+        } catch (Exception ex) {
+            System.out.println("Thread interrupted");
+            ex.printStackTrace();
+        }
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.start();
+        t.interrupt();
+    }
+}
+```
+**Sample Output:**
+```
+1
+Thread interrupted
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep0(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:484)
+	at Test.run(Program.java:7)
+```
+
+---
+
+#### `interrupted()` and `isInterrupted()`
+
+- Both methods i.e. interrupted() and isInterrupted() are used to check whether a thread is interrupted or not.
+- `interrupted()` method will return true if a thread is interrupted and after that it clears the interrupt status from true to false.
+- `isInterrupted()` method will return true if a thread is interrupted but it does not clear the interrupt status.  
+
+**Note:** `interrupted()` method will change the result if called twice because it will change the status from true to false.
+
+```java
+class Test extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Is Thread Interrupted: " + Thread.interrupted());
+        System.out.println("Is Thread Interrupted: " + Thread.currentThread().isInterrupted());
+        try {
+            for (int i = 1; i <= 5; i++) {
+                System.out.println(i);
+                Thread.sleep(1000);
+            }
+        } catch (Exception ex) {
+            System.out.println("Thread interrupted");
+            ex.printStackTrace();
+        }
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.start();
+        t.interrupt();
+    }
+}
+```
+**Sample Output:**
+```
+Is Thread Interrupted: true
+Is Thread Interrupted: false
+1
+2
+3
+4
+5
+```
 
 ---
