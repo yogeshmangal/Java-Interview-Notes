@@ -653,7 +653,7 @@ Is Thread Interrupted: false
 
 ## 8. Runnable vs Callable
 
-### ? Runnable - Basics
+### Runnable - Basics
 - Runnable is an interface with a single method: `void run()`
 - Used to define tasks that can be executed by a thread.
 - Does **not return** any value.
@@ -678,7 +678,7 @@ public class Main {
 
 ---
 
-### ? Callable - Basics
+### Callable - Basics
 - Callable is a generic interface: `V call() throws Exception`
 - Used to define tasks that return a result or throw checked exceptions.
 - Cannot be used directly with `Thread`. It is used with `ExecutorService`.
@@ -710,7 +710,7 @@ public class Main {
 
 ---
 
-### ?? Runnable vs Callable Comparison
+### Runnable vs Callable Comparison
 
 | Feature                  | Runnable            | Callable             |
 |--------------------------|---------------------|----------------------|
@@ -721,14 +721,14 @@ public class Main {
 
 ---
 
-### ?? Real Life Analogy
+### Real Life Analogy
 
 - **Runnable**: Like asking a friend to do something without expecting anything back.
 - **Callable**: Like ordering on Swiggy - you track the order and get the result (food).
 
 ---
 
-### ? When to Use What?
+### When to Use What?
 
 | Scenario                              | Use         |
 |---------------------------------------|-------------|
