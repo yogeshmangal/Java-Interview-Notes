@@ -650,3 +650,91 @@ Is Thread Interrupted: false
 **Note:** To call wait(), notify() or notifyAll() method on any object, thread should own the lock of that object i.e. the thread should be inside synchronized area.
 
 ---
+
+## 8. Runnable vs Callable
+
+### ? Runnable - Basics
+- Runnable is an interface with a single method: `void run()`
+- Used to define tasks that can be executed by a thread.
+- Does **not return** any value.
+- Cannot throw **checked exceptions**.
+
+#### Example:
+```java
+class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Runnable is running...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyRunnable task = new MyRunnable();
+        Thread thread = new Thread(task);
+        thread.start();
+    }
+}
+```
+
+---
+
+### ? Callable - Basics
+- Callable is a generic interface: `V call() throws Exception`
+- Used to define tasks that return a result or throw checked exceptions.
+- Cannot be used directly with `Thread`. It is used with `ExecutorService`.
+
+#### Example:
+```java
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+class MyCallable implements Callable<String> {
+    public String call() throws Exception {
+        return "Callable finished!";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        MyCallable task = new MyCallable();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> future = executor.submit(task);
+        String result = future.get();  // Blocks until result is available
+        System.out.println(result);
+        executor.shutdown();
+    }
+}
+```
+
+---
+
+### ?? Runnable vs Callable Comparison
+
+| Feature                  | Runnable            | Callable             |
+|--------------------------|---------------------|----------------------|
+| Method                   | `run()`             | `call()`             |
+| Returns a value?         | ? No               | ? Yes               |
+| Can throw checked exceptions? | ? No       | ? Yes               |
+| Used with                | `Thread`            | `ExecutorService` + `Future` |
+
+---
+
+### ?? Real Life Analogy
+
+- **Runnable**: Like asking a friend to do something without expecting anything back.
+- **Callable**: Like ordering on Swiggy - you track the order and get the result (food).
+
+---
+
+### ? When to Use What?
+
+| Scenario                              | Use         |
+|---------------------------------------|-------------|
+| Simple task in background             | Runnable    |
+| Need result from task                 | Callable    |
+| Task may throw checked exception      | Callable    |
+| Want to wait, cancel, or track result | Callable + Future |
+
+---
