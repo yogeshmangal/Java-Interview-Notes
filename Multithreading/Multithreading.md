@@ -715,8 +715,8 @@ public class Main {
 | Feature                  | Runnable            | Callable             |
 |--------------------------|---------------------|----------------------|
 | Method                   | `run()`             | `call()`             |
-| Returns a value?         | ? No               | ? Yes               |
-| Can throw checked exceptions? | ? No       | ? Yes               |
+| Returns a value?         | No               | Yes               |
+| Can throw checked exceptions? | No       | Yes               |
 | Used with                | `Thread`            | `ExecutorService` + `Future` |
 
 ---
