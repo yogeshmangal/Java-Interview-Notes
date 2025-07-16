@@ -621,3 +621,32 @@ Is Thread Interrupted: false
 ```
 
 ---
+
+### vi) Inter-Thread Communication Methods: (`wait()`, `notify()`, `notifyAll()`)
+
+- Inter-Thread communication is a mechanism in which a thread releases the lock and enter into the paused state and another thread acquires the same lock and continue to executed. It is implemented by the 3 methods of object class:  
+**wait(), notify(), notifyAll()**
+
+---
+
+#### `wait()`
+
+- If any thread calls the wait() method, it causes the current thread to release the lock and wait until another thread invokes the notify() or notifyAll() method for this object, or a specified amount of time has elapsed.
+
+---
+
+#### `notify()`
+
+- This method is used to wake up a single thread and releases the object lock.
+
+---
+
+#### `notifyAll()`
+
+- This method is used to wake up all the threads that are in waiting state.
+
+--- 
+
+**Note:** To call wait(), notify() or notifyAll() method on any object, thread should own the lock of that object i.e. the thread should be inside synchronized area.
+
+---
