@@ -738,3 +738,22 @@ public class Main {
 | Want to wait, cancel, or track result | Callable + Future |
 
 ---
+
+## 9. What is Synchronization and its advantages and disadvantages?
+
+- Synchronization is the process by which we can control the accesibility of multiple threads to a particular shared resource.
+- Problem which can other without synchronization is Data Inconsistency and Thread Interference like deadlock.
+
+### Advantages of Synchronization:
+
+- No data inconsistency problem.
+- No thread interference.
+
+### Disadvantages of Synchronization:
+
+- Increases the waiting time period of threads.
+- Create perfomance problems.  
+
+**Note:** To overcome synchronization disadvantages, java provides one packagae java.util.concurrent
+
+---
