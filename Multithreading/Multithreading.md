@@ -757,3 +757,130 @@ public class Main {
 **Note:** To overcome synchronization disadvantages, java provides one packagae java.util.concurrent
 
 ---
+
+## 10. How to achieve synchronization?
+- There are 2 ways to achieve Thread Synchronization:  
+(a) **Mutual Exclusive**: Achieved by  
+- Synchronized Method  
+- Synchronized Block  
+- Static Synchronization  
+
+(b) **Cooperation** (Inter Thread Communication in Java): Achieved using methods of `Object` class:  
+- `wait()`  
+- `notify()`  
+- `notifyAll()`  
+
+---
+
+### (a) Synchronized Method:
+In this, we use the **synchronized** keyword in the method declaration. It locks the object for any synchronized method.
+
+**Example**
+```java
+class Table {
+    synchronized void printTable(int n) { // synchronized method
+        for(int i = 1; i <= 5; i++) {
+            System.out.println(n * i);
+            try { Thread.sleep(400); } catch(Exception e) { System.out.println(e); }
+        }
+    }
+}
+
+class MyThread1 extends Thread {
+    Table t;
+    MyThread1(Table t) { this.t = t; }
+    public void run() { t.printTable(5); }
+}
+
+class MyThread2 extends Thread {
+    Table t;
+    MyThread2(Table t) { this.t = t; }
+    public void run() { t.printTable(100); }
+}
+
+public class TestSynchronization {
+    public static void main(String args[]) {
+        Table obj = new Table(); // only one object
+        MyThread1 t1 = new MyThread1(obj);
+        MyThread2 t2 = new MyThread2(obj);
+        t1.start();
+        t2.start();
+    }
+}
+```
+
+---
+
+### (b) Synchronized Block:
+Synchronized block is used to lock only a portion of code inside a method. It improves performance by reducing the scope of synchronization.
+
+**Example**
+```java
+class Table {
+    void printTable(int n) {
+        synchronized(this) { // synchronized block
+            for(int i = 1; i <= 5; i++) {
+                System.out.println(n * i);
+                try { Thread.sleep(400); } catch(Exception e) { System.out.println(e); }
+            }
+        }
+    }
+}
+
+class MyThread1 extends Thread {
+    Table t;
+    MyThread1(Table t) { this.t = t; }
+    public void run() { t.printTable(5); }
+}
+
+class MyThread2 extends Thread {
+    Table t;
+    MyThread2(Table t) { this.t = t; }
+    public void run() { t.printTable(100); }
+}
+
+public class TestSynchronizedBlock {
+    public static void main(String args[]) {
+        Table obj = new Table(); // only one object
+        MyThread1 t1 = new MyThread1(obj);
+        MyThread2 t2 = new MyThread2(obj);
+        t1.start();
+        t2.start();
+    }
+}
+```
+
+---
+
+### (c) Static Synchronization:
+When threads access synchronized static methods, the lock is on the class (not the object). Useful when data inconsistency happens due to multiple object access.
+
+**Example**
+```java
+class Table {
+    synchronized static void printTable(int n) {
+        for(int i = 1; i <= 5; i++) {
+            System.out.println(n * i);
+            try { Thread.sleep(400); } catch(Exception e) { System.out.println(e); }
+        }
+    }
+}
+
+class MyThread1 extends Thread {
+    public void run() { Table.printTable(1); }
+}
+
+class MyThread2 extends Thread {
+    public void run() { Table.printTable(10); }
+}
+
+public class TestStaticSync {
+    public static void main(String args[]) {
+        MyThread1 t1 = new MyThread1();
+        MyThread2 t2 = new MyThread2();
+        t1.start();
+        t2.start();
+    }
+}
+```
+---
