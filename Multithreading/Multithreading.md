@@ -766,9 +766,9 @@ There are 2 ways to achieve Thread Synchronization:
 	- Static Synchronization  
 
 (b) **Cooperation** (Inter Thread Communication in Java): Achieved using methods of `Object` class:  
-- `wait()`  
-- `notify()`  
-- `notifyAll()`  
+	- `wait()`  
+	- `notify()`  
+	- `notifyAll()`  
 
 ---
 
