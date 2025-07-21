@@ -761,9 +761,9 @@ public class Main {
 ## 10. How to achieve synchronization?
 - There are 2 ways to achieve Thread Synchronization:  
 (a) **Mutual Exclusive**: Achieved by  
-- Synchronized Method  
-- Synchronized Block  
-- Static Synchronization  
+	- Synchronized Method  
+	- Synchronized Block  
+	- Static Synchronization  
 
 (b) **Cooperation** (Inter Thread Communication in Java): Achieved using methods of `Object` class:  
 - `wait()`  
