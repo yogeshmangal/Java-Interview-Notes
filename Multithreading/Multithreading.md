@@ -918,8 +918,8 @@ public class TestStaticSync {
 ---
 
 ## 11. How writing the synchronized keyword in front of the method works internally?
-- When we use synchronized keyword, then it means we are telling the JVM that at a time only one thread can access the shared resource. In Java, every object has its own lock. So the internal working 
-of synchronized keyword is like when multiple threads comes to access the shared resource, the lock of the object is acquired by one of the thread (it can be any thread depends on the JVM) and rest 
+- When we use **synchronized** keyword, then it means we are telling the JVM that at a time only one thread can access the shared resource. In Java, every object has its own lock. So the internal working 
+of **synchronized** keyword is like when multiple threads comes to access the shared resource, the lock of the object is acquired by one of the thread (it can be any thread depends on the JVM) and rest 
 of the thread will go into the waiting state. Now the first thread that has acquired the lock will do his job and releases the lock. So now one of the thread from waiting state comes to runnable state 
 and acquired the lock and do its job and the process goes on.
 
