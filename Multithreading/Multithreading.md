@@ -782,10 +782,10 @@ class Table {
         for(int i = 1; i <= 5; i++) {
             System.out.println(n * i);
             try { 
-				Thread.sleep(400); 
-			} catch(Exception e) { 
-				System.out.println(e); 
-			}
+                Thread.sleep(400); 
+            } catch(Exception e) { 
+                System.out.println(e); 
+            }
         }
     }
 }
@@ -793,21 +793,21 @@ class Table {
 class MyThread1 extends Thread {
     Table t;
     MyThread1(Table t) { 
-		this.t = t; 
-	}
+        this.t = t; 
+    }
     public void run() { 
-		t.printTable(5); 
-	}
+        t.printTable(5); 
+    }
 }
 
 class MyThread2 extends Thread {
     Table t;
     MyThread2(Table t) { 
-		this.t = t; 
-	}
+        this.t = t; 
+    }
     public void run() { 
-		t.printTable(100); 
-	}
+        t.printTable(100); 
+    }
 }
 
 public class TestSynchronization {
@@ -834,10 +834,10 @@ class Table {
             for(int i = 1; i <= 5; i++) {
                 System.out.println(n * i);
                 try { 
-					Thread.sleep(400); 
-				} catch(Exception e) { 
-					System.out.println(e); 
-				}
+                    Thread.sleep(400); 
+                } catch(Exception e) { 
+                    System.out.println(e); 
+                }
             }
         }
     }
@@ -845,18 +845,22 @@ class Table {
 
 class MyThread1 extends Thread {
     Table t;
-    MyThread1(Table t) { this.t = t; }
-    public void run() { t.printTable(5); }
+    MyThread1(Table t) { 
+        this.t = t; 
+    }
+    public void run() { 
+        t.printTable(5); 
+    }
 }
 
 class MyThread2 extends Thread {
     Table t;
     MyThread2(Table t) { 
-		this.t = t; 
-	}
+        this.t = t; 
+    }
     public void run() { 
-		t.printTable(100); 
-	}
+        t.printTable(100); 
+    }
 }
 
 public class TestSynchronizedBlock {
@@ -882,24 +886,24 @@ class Table {
         for(int i = 1; i <= 5; i++) {
             System.out.println(n * i);
             try { 
-				Thread.sleep(400); 
-			} catch(Exception e) { 
-				System.out.println(e); 
-			}
+                Thread.sleep(400); 
+            } catch(Exception e) { 
+                System.out.println(e); 
+            }
         }
     }
 }
 
 class MyThread1 extends Thread {
     public void run() { 
-		Table.printTable(1); 
-	}
+        Table.printTable(1); 
+    }
 }
 
 class MyThread2 extends Thread {
     public void run() { 
-		Table.printTable(10); 
-	}
+        Table.printTable(10); 
+    }
 }
 
 public class TestStaticSync {
