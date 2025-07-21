@@ -759,7 +759,7 @@ public class Main {
 ---
 
 ## 10. How to achieve synchronization?
-- There are 2 ways to achieve Thread Synchronization:  
+There are 2 ways to achieve Thread Synchronization:  
 (a) **Mutual Exclusive**: Achieved by  
 	- Synchronized Method  
 	- Synchronized Block  
