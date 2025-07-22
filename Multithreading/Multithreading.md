@@ -924,3 +924,9 @@ of the thread will go into the waiting state. Now the first thread that has acqu
 and acquired the lock and do its job and the process goes on.
 
 ---
+
+## 12. Deadlock in Threads
+- Deadlock is a situation in concurrent programming where two or more threads are blocked indefinitely, waiting for each other to release resources that they need in order to proceed. In other words, each
+thread holds a resource that another thread needs and they are both waiting for each other to release their respective resources, resulting in a deadlock state.
+
+---
