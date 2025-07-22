@@ -937,7 +937,7 @@ thread holds a resource that another thread needs and they are both waiting for 
 
 **Note:** In Race condition, threads compete for shared resource access while in Deadlock, threads wait forever due to a circular lock hold.
 
-### How to Prevent Race Conditions?   
+### How to Prevent Race Conditions?  
 (a) Using synchronized keyword   
 (b) Using  synchronized block   
 (c) Using ReentrantLock (from java.util.concurrent.locks)   
