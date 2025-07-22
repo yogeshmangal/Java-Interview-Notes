@@ -944,3 +944,118 @@ thread holds a resource that another thread needs and they are both waiting for 
 (d) Using Atomic Variables   
 
 ---
+
+## 14. What is Thread Safety and How to achieve it ?
+
+### What is Thread Safety?
+- A **class or method is thread-safe** if it behaves correctly when accessed by **multiple threads simultaneously** - without corrupting data or producing incorrect results.
+
+- Thread safety ensures:
+	- No race conditions
+	- No inconsistent state
+	- No unexpected behaviors
+
+---
+
+### How to Achieve Thread Safety
+
+#### a) Immutability
+
+> An **immutable object** is one whose state cannot change after construction.
+
+Since immutable data never changes, it's inherently thread-safe.
+
+##### Example:
+```java
+public final class User {
+    private final String name;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+```
+
+---
+
+#### b) Thread Confinement
+
+> Restrict data access to only one thread. If only one thread can access it, no synchronization is needed.
+
+##### Example: Using local variables
+```java
+public void process() {
+    int localCounter = 0; // Confined to this thread only
+    localCounter++;
+}
+```
+
+##### Example: Using ThreadLocal
+```java
+ThreadLocal<Integer> threadLocal = ThreadLocal.withInitial(() -> 0);
+```
+
+---
+
+#### c) Synchronized Collections (Collections.synchronizedXXX())
+
+Java provides synchronized wrappers to make collections thread-safe.
+
+##### Example:
+```java
+List<String> list = Collections.synchronizedList(new ArrayList<>());
+Map<String, String> map = Collections.synchronizedMap(new HashMap<>());
+```
+
+- Still need manual synchronization when iterating:
+```java
+synchronized (list) {
+    for (String item : list) {
+        // safe iteration
+    }
+}
+```
+
+---
+
+#### d) Concurrent Collections (java.util.concurrent)
+
+These are designed for high concurrency - safer and faster than synchronized wrappers.
+
+##### Common Classes:
+| Class                   | Description                              |
+|------------------------|------------------------------------------|
+| `ConcurrentHashMap`    | Thread-safe map; better than HashMap      |
+| `CopyOnWriteArrayList` | Safe for reads; good for infrequent writes |
+| `BlockingQueue`        | Used in producer-consumer patterns        |
+
+##### Example: ConcurrentHashMap
+```java
+Map<String, Integer> map = new ConcurrentHashMap<>();
+map.put("key", 1);
+int value = map.get("key");
+```
+
+- No need for explicit synchronization - thread-safe by design.
+
+---
+
+#### When to Use What?
+
+| Scenario                          | Recommended Approach                     |
+|----------------------------------|------------------------------------------|
+| Shared read-only data             | Immutability                          |
+| Per-thread logic                  | Thread Confinement / ThreadLocal      |
+| Simple shared collections         | Collections.synchronizedXXX()         |
+| High-concurrency environment      | ConcurrentHashMap, CopyOnWriteArrayList |
+
+---
+
+#### Final Tip
+- Thread safety is not just about locking - it's about **designing your program to minimize or isolate shared state**, so that threads don't step on each other.
+
+---
