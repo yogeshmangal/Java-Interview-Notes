@@ -930,3 +930,17 @@ and acquired the lock and do its job and the process goes on.
 thread holds a resource that another thread needs and they are both waiting for each other to release their respective resources, resulting in a deadlock state.
 
 ---
+
+## 13. What is a Race Conditions and How to Prevent it?
+- A race condition occurs when two or more threads access shared data concurrently, and the final outcome depends on the timing of their execution.
+- This can lead to unexpected, inconsistent, or corrupted results because threads are racing to read or write the same memory location.   
+
+**Note:** In Race condition, threads compete for shared resource access while in Deadlock, threads wait forever due to a circular lock hold.
+
+### How to Prevent Race Conditions?   
+(a) Using synchronized keyword   
+(b) Using  synchronized block   
+(c) Using ReentrantLock (from java.util.concurrent.locks)   
+(d) Using Atomic Variables   
+
+---
