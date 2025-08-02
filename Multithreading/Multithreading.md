@@ -1059,3 +1059,142 @@ int value = map.get("key");
 - Thread safety is not just about locking - it's about **designing your program to minimize or isolate shared state**, so that threads don't step on each other.
 
 ---
+
+## 15. Producer-Consumer Problem   
+
+The **Producer-Consumer problem** is a classic synchronization problem in multithreading where:
+
+- The **Producer** thread generates data and stores it in a shared resource.
+- The **Consumer** thread takes the data from the shared resource and processes it.
+- The challenge lies in proper coordination to ensure:
+  - The producer doesn't add data when the buffer is full.
+  - The consumer doesn't read data when the buffer is empty.
+
+---
+
+### Concepts Involved
+
+- Shared resource (e.g., Queue or Buffer)
+- Thread synchronization using `wait()` and `notify()`
+- Thread-safe Java utilities like `BlockingQueue`
+
+---
+
+### Solution 1: Using `wait()` and `notify()`
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+class SharedBuffer {
+    private final Queue<Integer> buffer = new LinkedList<>();
+    private final int CAPACITY = 5;
+
+    public synchronized void produce(int value) throws InterruptedException {
+        while (buffer.size() == CAPACITY) {
+            wait(); // wait until space is available
+        }
+        buffer.add(value);
+        System.out.println("Produced: " + value);
+        notify(); // notify consumer that item is available
+    }
+
+    public synchronized int consume() throws InterruptedException {
+        while (buffer.isEmpty()) {
+            wait(); // wait until item is available
+        }
+        int value = buffer.remove();
+        System.out.println("Consumed: " + value);
+        notify(); // notify producer that space is available
+        return value;
+    }
+}
+```
+
+```java
+public class ProducerConsumerExample {
+    public static void main(String[] args) {
+        SharedBuffer buffer = new SharedBuffer();
+
+        Thread producer = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    buffer.produce(i);
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread consumer = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    buffer.consume();
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        producer.start();
+        consumer.start();
+    }
+}
+```
+
+---
+
+### Solution 2: Using `BlockingQueue`
+
+Java provides `BlockingQueue` in `java.util.concurrent`, which internally manages synchronization.
+
+```java
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+public class ProducerConsumerBlockingQueue {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(5);
+
+        Thread producer = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    queue.put(i); // blocks if queue is full
+                    System.out.println("Produced: " + i);
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread consumer = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    int value = queue.take(); // blocks if queue is empty
+                    System.out.println("Consumed: " + value);
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        producer.start();
+        consumer.start();
+    }
+}
+```
+
+---
+
+### Summary
+
+| Approach               | Pros                              | Cons                                  |
+|------------------------|-----------------------------------|---------------------------------------|
+| `wait()` / `notify()`  | Fine-grained control               | More error-prone and verbose          |
+| `BlockingQueue`        | Simple and thread-safe            | Less flexibility, depends on Java lib |
+
+---
