@@ -1467,7 +1467,7 @@ executor.shutdown();
 
 #### Why use CompletableFuture?
 - No need to block with get()
-- Write clean async code using thenApply(), thenAccept(), thenCombine(), etc.
+- Write clean async code using `thenApply()`, `thenAccept()`, `thenCombine()`, etc.
 - Easier to handle dependent or parallel tasks   
 
 #### Example:
@@ -1483,11 +1483,11 @@ future.thenAccept(System.out::println); // prints: Hello from CompletableFuture!
 
 | Feature                     | Future            | CompletableFuture                       |
 |----------------------------|-------------------|------------------------------------------|
-| Asynchronous execution     | ? Yes            | ? Yes                                   |
-| Blocking `get()`           | ? Yes            | ? Optional (can be non-blocking)        |
-| Chaining of tasks          | ? No             | ? Yes (`thenApply`, etc.)               |
-| Exception handling         | ? Minimal        | ? Rich handling (`exceptionally`)       |
-| Combining multiple futures | ? No             | ? Yes (`thenCombine`, `allOf`)          |
+| Asynchronous execution     | Yes            | Yes                                   |
+| Blocking `get()`           | Yes            | Optional (can be non-blocking)        |
+| Chaining of tasks          | No             | Yes (`thenApply`, etc.)               |
+| Exception handling         | Minimal        | Rich handling (`exceptionally`)       |
+| Combining multiple futures | No             | Yes (`thenCombine`, `allOf`)          |
 | Java version               | Java 5            | Java 8+                                  |
 
 ---
