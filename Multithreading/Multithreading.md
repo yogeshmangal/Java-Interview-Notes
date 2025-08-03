@@ -1307,7 +1307,7 @@ private volatile boolean flag = false;
 ---
 
 ## 18. What is Executor Framework (Executor, ExecutorService, ThreadPoolExecutor)
-The **Executor Framework** in Java provides a high-level API for managing and executing threads efficiently, replacing the need to manually create and manage threads.
+The **Executor Framework** in Java provides a high-level API for managing and executing threads efficiently, replacing the need to manually create and manage threads using Thread class.
 
 ---
 
@@ -1419,5 +1419,75 @@ Executors.newScheduledThreadPool(2);   // For scheduled tasks
 - Always call `shutdown()` on your ExecutorService.
 - Prefer `Executors.newFixedThreadPool()` over manual thread creation.
 - Avoid unbounded queues in `ThreadPoolExecutor` unless necessary.
+
+---
+
+## 19. Future and CompletableFuture
+
+### Future
+`Future` is a Java interface used to represent the result of an asynchronous computation - i.e., something that might finish **in the future**.
+
+It is returned when you submit a task using an `ExecutorService`.
+
+#### Key Features of Future:
+- Represents the result of a background task.
+- You can:
+  - `get()` the result (waits if necessary)
+  - `cancel()` the task
+  - Check `isDone()` or `isCancelled()`
+
+#### Example:
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(1);
+
+Callable<String> task = () -> {
+    Thread.sleep(2000);
+    return "Hello from Future!";
+};
+
+Future<String> future = executor.submit(task);
+
+// Do other work...
+
+String result = future.get(); // blocks until task is done
+System.out.println(result);
+executor.shutdown();
+```
+---
+
+### CompletableFuture
+`CompletableFuture` is a more powerful and flexible version of Future, introduced in Java 8.   
+
+- It supports:
+	- Non-blocking execution
+	- Chaining of tasks
+	- Combining multiple futures
+	- Exception handling
+
+#### Why use CompletableFuture?
+- No need to block with get()
+- Write clean async code using thenApply(), thenAccept(), thenCombine(), etc.
+- Easier to handle dependent or parallel tasks   
+
+#### Example:
+```java
+CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+    return "Hello";
+}).thenApply(result -> result + " from CompletableFuture!");
+
+future.thenAccept(System.out::println); // prints: Hello from CompletableFuture!
+```
+
+### Future vs CompletableFuture
+
+| Feature                     | Future            | CompletableFuture                       |
+|----------------------------|-------------------|------------------------------------------|
+| Asynchronous execution     | ? Yes            | ? Yes                                   |
+| Blocking `get()`           | ? Yes            | ? Optional (can be non-blocking)        |
+| Chaining of tasks          | ? No             | ? Yes (`thenApply`, etc.)               |
+| Exception handling         | ? Minimal        | ? Rich handling (`exceptionally`)       |
+| Combining multiple futures | ? No             | ? Yes (`thenCombine`, `allOf`)          |
+| Java version               | Java 5            | Java 8+                                  |
 
 ---
