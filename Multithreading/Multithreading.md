@@ -1305,3 +1305,119 @@ private volatile boolean flag = false;
 - So in summary, we can say that without volatile keyword variable, changes to those variable may not be immediately visible across threads without proper synchronization, but with the volatile keyword variable, changes to a variable are immediately visible across threads.
 
 ---
+
+## 18. What is Executor Framework (Executor, ExecutorService, ThreadPoolExecutor)
+The **Executor Framework** in Java provides a high-level API for managing and executing threads efficiently, replacing the need to manually create and manage threads.
+
+---
+
+### Why Executor Framework?
+
+Before:
+```java
+Thread t = new Thread(() -> {
+   // task
+});
+t.start();
+```
+- Not scalable for large applications.
+- Difficult to manage thread reuse and lifecycle.
+
+After (using Executor Framework):
+- Better resource management
+- Thread pooling
+- Async task handling
+- Graceful shutdown
+
+---
+
+### Core Components
+
+#### 1. **Executor (Interface)**
+
+```java
+public interface Executor {
+    void execute(Runnable command);
+}
+```
+- Simplest interface to execute tasks.
+- No lifecycle control or return value support.
+
+---
+
+#### 2. **ExecutorService (Interface)**
+
+Extends `Executor` and adds powerful features:
+- `submit()` for returning `Future`
+- `shutdown()` and `awaitTermination()` for lifecycle control
+- `invokeAll()`, `invokeAny()` for batch tasks
+
+```java
+ExecutorService service = Executors.newFixedThreadPool(3);
+
+service.submit(() -> {
+    System.out.println("Task executed");
+});
+
+service.shutdown();
+```
+
+---
+
+#### 3. **ThreadPoolExecutor (Class)**
+
+- Core class behind most executor implementations.
+- Full control over thread pool behavior.
+
+```java
+ExecutorService executor = new ThreadPoolExecutor(
+    2,                      // corePoolSize
+    4,                      // maximumPoolSize
+    10,                     // keepAliveTime
+    TimeUnit.SECONDS,       // time unit
+    new LinkedBlockingQueue<Runnable>() // work queue
+);
+```
+
+---
+
+#### 4. **Executors (Utility Class)**
+
+Provides factory methods to create commonly used thread pools.
+
+```java
+Executors.newFixedThreadPool(3);       // Fixed-size pool
+Executors.newCachedThreadPool();       // Expands as needed
+Executors.newSingleThreadExecutor();   // Single-threaded
+Executors.newScheduledThreadPool(2);   // For scheduled tasks
+```
+
+---
+
+### Comparison Table
+
+| Component             | Type      | Purpose                                       |
+|-----------------------|-----------|-----------------------------------------------|
+| `Executor`            | Interface | Basic contract to run tasks                   |
+| `ExecutorService`     | Interface | Adds lifecycle control, task submission       |
+| `ThreadPoolExecutor`  | Class     | Actual implementation of thread pooling       |
+| `Executors`           | Utility   | Factory methods for easy executor creation    |
+
+---
+
+### Summary
+
+- Use **Executor** to run a task.
+- Use **ExecutorService** for better control (shutdown, futures).
+- Use **ThreadPoolExecutor** for full customization.
+- Use **Executors** utility to quickly create executors.
+
+---
+
+### Best Practices
+
+- Always call `shutdown()` on your ExecutorService.
+- Prefer `Executors.newFixedThreadPool()` over manual thread creation.
+- Avoid unbounded queues in `ThreadPoolExecutor` unless necessary.
+
+---
