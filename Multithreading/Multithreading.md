@@ -1199,7 +1199,7 @@ public class ProducerConsumerBlockingQueue {
 
 ---
 
-## 16. What is Semaphores?
+## 16. What is Semaphore?
 A **Semaphore** is a synchronization aid used in concurrent programming to control the number of threads that can access a particular resource at the same time.
 
 ---
@@ -1292,5 +1292,16 @@ public class SemaphoreExample {
 
 - **Thread** enables parallelism.
 - **Semaphore** ensures safe access to shared resources during that parallelism.
+
+---
+
+## 17. Volatile Keyword
+- The Volatile keyword guarantees visibility of changes made to the variable across threads. When a thread modifies the value of a volatile variable, the new value is immediately visible to all other threads.   
+**Eg:**
+```java
+private volatile boolean flag = false;
+```
+
+- So in summary, we can say that without volatile keyword variable, changes to those variable may not be immediately visible across threads without proper synchronization, but with the volatile keyword variable, changes to a variable are immediately visible across threads.
 
 ---
