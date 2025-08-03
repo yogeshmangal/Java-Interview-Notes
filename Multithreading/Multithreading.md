@@ -1198,3 +1198,99 @@ public class ProducerConsumerBlockingQueue {
 | `BlockingQueue`        | Simple and thread-safe            | Less flexibility, depends on Java lib |
 
 ---
+
+## 16. What is Semaphores?
+A **Semaphore** is a synchronization aid used in concurrent programming to control the number of threads that can access a particular resource at the same time.
+
+---
+
+### What is a Semaphore?
+
+A **Semaphore** is like a **counter** that controls access to shared resources.
+
+- It allows only a **fixed number of threads** to access a resource.
+- When the count reaches 0, further threads trying to acquire will be **blocked** until a permit is released.
+
+---
+
+### Real-Life Analogy
+
+> Imagine a public restroom with **3 stalls**. Only 3 people can use it at once.
+
+- A **Semaphore with count = 3** represents 3 available stalls.
+- As people enter, they **acquire()** a permit.
+- When all 3 are occupied, others must wait.
+- Once a person exits, they **release()** the permit, allowing others to enter.
+
+---
+
+### Java Example
+
+```java
+import java.util.concurrent.Semaphore;
+
+public class SemaphoreExample {
+
+    // Only 2 threads allowed at a time
+    static Semaphore semaphore = new Semaphore(2);
+
+    static class MyThread extends Thread {
+        String name;
+
+        MyThread(String name) {
+            this.name = name;
+        }
+
+        public void run() {
+            try {
+                System.out.println(name + " trying to acquire semaphore...");
+                semaphore.acquire();
+                System.out.println(name + " acquired semaphore!");
+
+                Thread.sleep(2000); // simulate work
+
+                System.out.println(name + " releasing semaphore...");
+                semaphore.release();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            new MyThread("Thread-" + i).start();
+        }
+    }
+}
+```
+
+---
+
+### Key Methods
+
+| Method              | Description                                       |
+|---------------------|---------------------------------------------------|
+| `acquire()`         | Acquires a permit (waits if none are available)   |
+| `release()`         | Releases a permit (notifies waiting threads)      |
+| `availablePermits()`| Returns number of currently available permits     |
+
+---
+
+### Thread vs Semaphore - What's the Difference?
+
+| Aspect              | Threads                                          | Semaphores                                                   |
+|---------------------|--------------------------------------------------|---------------------------------------------------------------|
+| Purpose             | Enable **concurrent execution** of tasks         | **Control & synchronize** access to shared resources          |
+| Control Flow        | Represent **units of execution**                 | Represent **permits/tokens** for access control               |
+| Creation/Use        | Used to perform tasks in parallel                | Used to manage **how many threads** can run a critical section |
+| Example             | Downloading files concurrently                   | Allow only 3 threads to use a DB connection at a time         |
+
+---
+
+### Summary
+
+- **Thread** enables parallelism.
+- **Semaphore** ensures safe access to shared resources during that parallelism.
+
+---
