@@ -1530,32 +1530,18 @@ They are lightweight threads managed by the **JVM** rather than the
 
 ---
 
-### Key Differences
+## Key Differences
 
-  ------------------------------------------------------------------------
-  Feature                 Platform Threads (Normal)     Virtual Threads
-  ----------------------- ----------------------------- ------------------
-  **Introduced In**       Java 1.0                      Java 19 (Preview),
-                                                        Java 21 (Stable)
+| Feature | Platform Threads (Normal) | Virtual Threads |
+|---|---|---|
+| **Introduced In** | Java 1.0 | Java 19 (preview), **Java 21 (GA)** |
+| **Managed By** | Operating System (OS) | **JVM** |
+| **Scheduling** | OS scheduler | JVM scheduler over a small pool of **carrier** (platform) threads |
+| **Memory Cost** | ~**1 MB** per thread (default stack) | **Few KB** to start; stack grows on demand |
+| **Typical Count** | **Thousands** (limited by OS resources) | **Hundreds of thousands to millions** |
+| **Best For** | **CPU-bound** tasks | **I/O-bound** & high-concurrency workloads |
 
-  **Managed By**          OS                            JVM
-
-  **Scheduling**          OS scheduler                  JVM scheduler
-                                                        (over carrier
-                                                        threads)
-
-  **Memory Cost**         \~1 MB per thread             Few KB (lazy
-                                                        stack)
-
-  **Count**               Thousands (limited by OS)     Millions
-                                                        (scalable)
-
-  **Best For**            CPU-intensive tasks           I/O-bound & high
-                                                        concurrency apps
-  ------------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
+---
 ### Summary
 
 - Platform Threads = Heavy, OS-level threads (good for CPU-heavy
