@@ -1491,3 +1491,98 @@ future.thenAccept(System.out::println); // prints: Hello from CompletableFuture!
 | Java version               | Java 5            | Java 8+                                  |
 
 ---
+
+## 20. Virtual Threads in Java
+
+### Introduction
+
+Virtual Threads are a feature introduced in **Java 19** as a **preview
+feature** and became **stable in Java 21** as part of **Project Loom**.\
+They are lightweight threads managed by the **JVM** rather than the
+**Operating System (OS)**.
+
+---
+
+### Traditional Threads (Platform Threads)
+
+- Created using `Thread` class or `Runnable` interface.
+- Each Java thread maps directly to an **OS thread**.
+- Characteristics:
+  - OS manages scheduling and execution.
+  - Expensive: Each thread requires \~1 MB stack memory.
+  - Context switching between OS threads is costly.
+  - Limited scalability (thousands of threads max).
+
+---
+
+### Virtual Threads
+
+- Managed by the **JVM**, not the OS.
+- Internally scheduled on a small pool of **carrier (platform)
+  threads**.
+- Characteristics:
+  - OS is not aware of virtual threads.
+  - Extremely lightweight (stack allocated lazily, only a few KB).
+  - JVM handles suspension & resumption when blocking (e.g., I/O).
+  - Millions of virtual threads can exist in a single JVM process.
+  - Great for concurrent, I/O-heavy applications (servers, messaging
+    systems, etc.).
+
+---
+
+### Key Differences
+
+---
+
+Feature Platform Threads (Normal) Virtual Threads
+
+---
+
+**Introduced In** Java 1.0 Java 19 (Preview),
+Java 21 (Stable)
+
+**Managed By** OS JVM
+
+**Scheduling** OS scheduler JVM scheduler
+(over carrier
+threads)
+
+**Memory Cost** \~1 MB per thread Few KB (lazy
+stack)
+
+**Count** Thousands (limited by OS) Millions
+(scalable)
+
+**Best For** CPU-intensive tasks I/O-bound & high
+concurrency apps
+
+---
+
+---
+
+### Summary
+
+- Platform Threads = Heavy, OS-level threads (good for CPU-heavy
+  tasks).
+- Virtual Threads = Lightweight, JVM-managed threads (excellent for
+  high concurrency and I/O-bound workloads).
+- Virtual Threads are part of **Project Loom** and are a
+  **game-changer for scalability** in Java applications.
+
+## Example:
+
+```
+public class VirtualThreadDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Runnable task = () -> {
+            System.out.println("Running on " + Thread.currentThread());
+        };
+
+        // Create a virtual thread
+        Thread vThread = Thread.ofVirtual().start(task);
+
+        vThread.join();
+    }
+}
+```
+---
