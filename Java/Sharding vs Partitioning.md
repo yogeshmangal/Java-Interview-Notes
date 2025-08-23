@@ -71,5 +71,8 @@ Queries for login only hit `Users_Core`. Profile viewing joins with `Users_Profi
 ---
 
 ## ✅ In Short
-- **Partitioning** = Dividing data inside one DB (transparent to user).
-- **Sharding** = Dividing data across multiple DBs (app must handle routing).
+- **Horizontal Partitioning** = Split by rows.
+- **Vertical Partitioning** = Split by columns.
+- **Sharding** = Like horizontal partitioning, but across multiple DB instances.
+
+---
