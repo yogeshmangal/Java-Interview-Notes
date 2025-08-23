@@ -619,3 +619,11 @@ CompletableFuture.runAsync(() -> {
 | Async, non-blocking architecture     | Event Loop         |
 
 ---
+
+## 23. What is Out of Heap Memory Issue and how do you solve it?
+- Out of Heap Memory happens when the JVM cannot allocate space for new objects because the heap is full and garbage collection cannot reclaim memory. Common causes are memory leaks, holding too 
+many objects in collections, or trying to process very large data in memory. To fix it, I would first analyze heap usage with tools like VisualVM or heap dumps to check for leaks, then either optimize 
+memory usage in code, release unused references, or increase JVM heap size with -Xmx. In distributed systems, sometimes we also offload heavy data to external stores like Redis or databases instead of 
+keeping it all in memory. Also, will check Database connections, InputStreams, etc are closed properly. If left open, can lead to memory leaks.
+
+---
