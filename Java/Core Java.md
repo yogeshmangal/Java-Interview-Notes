@@ -392,6 +392,10 @@ ds.setPassword("password");
 ```
 ---
 
+### g) Sharding and Partioning
+https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Multithreading/Thread-Lifecycle.png
+---
+
 ## 18. What is Connection Pooling?
 - Connection pooling is a technique used to **reuse database connections** instead of creating and destroying them repeatedly. It maintains a **pool of open connections**, which can be reused by applications to communicate with the database.
 
