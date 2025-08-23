@@ -392,8 +392,9 @@ ds.setPassword("password");
 ```
 ---
 
-### g) Sharding and Partioning
+### g) Sharding and Partioning  
 [Sharding and Partioning] https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Java/Sharding%20vs%20Partitioning.md
+
 ---
 
 ## 18. What is Connection Pooling?
