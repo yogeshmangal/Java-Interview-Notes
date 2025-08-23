@@ -1532,33 +1532,29 @@ They are lightweight threads managed by the **JVM** rather than the
 
 ### Key Differences
 
----
+  ------------------------------------------------------------------------
+  Feature                 Platform Threads (Normal)     Virtual Threads
+  ----------------------- ----------------------------- ------------------
+  **Introduced In**       Java 1.0                      Java 19 (Preview),
+                                                        Java 21 (Stable)
 
-Feature Platform Threads (Normal) Virtual Threads
+  **Managed By**          OS                            JVM
 
----
+  **Scheduling**          OS scheduler                  JVM scheduler
+                                                        (over carrier
+                                                        threads)
 
-**Introduced In** Java 1.0 Java 19 (Preview),
-Java 21 (Stable)
+  **Memory Cost**         \~1 MB per thread             Few KB (lazy
+                                                        stack)
 
-**Managed By** OS JVM
+  **Count**               Thousands (limited by OS)     Millions
+                                                        (scalable)
 
-**Scheduling** OS scheduler JVM scheduler
-(over carrier
-threads)
+  **Best For**            CPU-intensive tasks           I/O-bound & high
+                                                        concurrency apps
+  ------------------------------------------------------------------------
 
-**Memory Cost** \~1 MB per thread Few KB (lazy
-stack)
-
-**Count** Thousands (limited by OS) Millions
-(scalable)
-
-**Best For** CPU-intensive tasks I/O-bound & high
-concurrency apps
-
----
-
----
+------------------------------------------------------------------------
 
 ### Summary
 
@@ -1569,7 +1565,7 @@ concurrency apps
 - Virtual Threads are part of **Project Loom** and are a
   **game-changer for scalability** in Java applications.
 
-## Example:
+## Example
 
 ```
 public class VirtualThreadDemo {
