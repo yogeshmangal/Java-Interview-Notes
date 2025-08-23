@@ -393,7 +393,7 @@ ds.setPassword("password");
 ---
 
 ### g) Sharding and Partioning
-https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Multithreading/Thread-Lifecycle.png
+[Sharding and Partioning] https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Java/Sharding%20vs%20Partitioning.md
 ---
 
 ## 18. What is Connection Pooling?
