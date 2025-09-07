@@ -627,3 +627,23 @@ memory usage in code, release unused references, or increase JVM heap size with 
 keeping it all in memory. Also, will check Database connections, InputStreams, etc are closed properly. If left open, can lead to memory leaks.
 
 ---
+
+## 24. How JVM Handles Garbage Collection?
+- Garbage Collection (GC) is the process of **automatically freeing memory** by deleting objects that are no longer reachable from any live thread or static reference.
+In Java, unlike in C/C++, we **do not manually call** `free()` or `delete()` to release memory — the **JVM does this automatically**.
+
+---
+
+### 🔹 How Does the JVM Track Objects Eligible for GC?
+
+The JVM uses the concept of **reachability**:
+
+- If an object can be reached through a **chain of references** starting from **GC roots**, it is considered **alive**.
+- If an object **cannot** be reached from GC roots, it becomes **eligible for garbage collection**.
+
+---
+
+### 🔹 Requesting Garbage Collection
+- You can request garbage collection manually using **System.gc();** but JVM may ignore it.
+
+---
