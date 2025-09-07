@@ -647,6 +647,4 @@ The JVM uses the concept of **reachability**:
 - You can request garbage collection manually using **System.gc();** but JVM may ignore it.
 
 ---
-
-## 25. REST vs SOAP?
  
