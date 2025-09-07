@@ -175,3 +175,46 @@ CallableStatement is a special JDBC interface used to call Stored Procedures in 
 - **CallableStatement**: Calls stored procedures and functions stored in the database
 
 ---
+
+## 3. Relational vs Non-Relational Database:
+
+### Relational Database
+- **Structure**: Stores data in tables (rows and columns) with predefined schema
+- **Schema**: Fixed schema that must be defined before data insertion
+- **Examples**: MySQL, PostgreSQL, Oracle, SQL Server, SQLite
+
+### Key Characteristics
+- ACID compliance (Atomicity, Consistency, Isolation, Durability)
+- Uses SQL for querying
+- Strong data integrity and consistency
+- Well-defined relationships between tables
+
+### Non-Relational Database (NoSQL)
+- **Structure**: Stores data in flexible formats like JSON, key-value pairs, documents, graphs, etc.
+- **Schema**: No fixed schema - schema-less or dynamic schema
+- **Examples**: MongoDB, Neo4j, Redis, CouchDB, DynamoDB, Cassandra
+
+### Types of NoSQL Databases
+- **Document**: MongoDB, CouchDB
+- **Key-Value**: Redis, DynamoDB
+- **Column-Family**: Cassandra, HBase
+- **Graph**: Neo4j, ArangoDB
+
+### Key Characteristics
+- Horizontal scalability
+- Flexible schema
+- High performance for specific use cases
+- Better for handling unstructured data
+
+### When to Use Which?
+
+| Use Case | Relational | Non-Relational |
+|----------|------------|----------------|
+| **Structured data** | ✅ Excellent | ❌ Not ideal |
+| **Complex queries** | ✅ SQL support | ⚠️ Limited |
+| **ACID transactions** | ✅ Strong support | ⚠️ Varies |
+| **Scalability** | ⚠️ Vertical scaling | ✅ Horizontal scaling |
+| **Flexible schema** | ❌ Rigid | ✅ Very flexible |
+| **Real-time analytics** | ⚠️ Moderate | ✅ Excellent |
+
+---
