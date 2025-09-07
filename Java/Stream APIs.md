@@ -3,6 +3,21 @@ The Java Stream API provides a powerful way to process collections of objects us
 
 ---
 
+## Functional Programming
+
+**Functional Programming** is a programming paradigm focused on writing code in a **functional style**, emphasizing immutability, pure functions, and declarative logic.
+
+---
+
+### 🔹 Functional Programming in Java
+
+In Java, **Stream APIs** are commonly used to implement functional programming principles.
+
+- **Streams do not modify the original data.**  
+- Instead, they create **new transformed data** as the result of operations.
+
+---
+
 ## For-each Method
 
 ```java
