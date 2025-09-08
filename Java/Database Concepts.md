@@ -312,4 +312,38 @@ If you want a user's name and email only from a GraphQL API:
 
 ---
 
+## 6. Categories of SQL Commands:
+
+### 🔹 1. DDL (Data Definition Language)
+
+- Used to **define or modify the structure of database objects**.
+- Examples:  
+  - `CREATE`
+  - `ALTER`
+  - `DROP`
+  - `TRUNCATE`
+- **Key Point:**  
+  DDL statements **cannot be rolled back**, even if executed inside a transaction (except in some databases that support transactional DDL).
+
+---
+
+### 🔹 2. DML (Data Manipulation Language)
+
+- Used to **manipulate data** inside the database (CRUD operations).
+- Examples:  
+  - `INSERT`
+  - `UPDATE`
+  - `DELETE`
+- **Key Point:**  
+  DML operations **can be rolled back** if executed inside a transaction.
+
+---
+
+### 🔹 3. DQL (Data Query Language)
+
+- Used to **query data** from the database.
+- Example:  
+  - `SELECT`
+
+---
 
