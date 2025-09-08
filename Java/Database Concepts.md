@@ -270,3 +270,46 @@ CallableStatement is a special JDBC interface used to call Stored Procedures in 
 
 ---
 
+## 5. What is GraphQL?
+
+**GraphQL** is a query language and runtime for APIs. It allows clients to request exactly the data they need (no more, no less) from APIs.
+
+## Example Query
+If you want a user's name and email only from a GraphQL API:
+
+**Query:**
+```graphql
+{
+  user(id: 1) {
+    name
+    email
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "data": {
+    "user": {
+      "name": "Yogesh",
+      "email": "ymangal@gmail.com"
+    }
+  }
+}
+```
+
+## GraphQL vs REST
+
+| Aspect | GraphQL | REST |
+|--------|---------|------|
+| **Endpoints** | Single endpoint | Multiple endpoints |
+| **Data Fetching** | Exact data needed | Fixed data structure |
+| **Over-fetching** | Eliminated | Common problem |
+| **Under-fetching** | Single request | Multiple requests needed |
+| **Caching** | Complex | Simple |
+| **Learning Curve** | Steeper | Gentler |
+
+---
+
+
