@@ -142,7 +142,7 @@ SELECT * FROM Users WHERE id = 105 OR 1 = 1;
 ```java
 PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Users WHERE id = ? and name = ?");
 pstmt.setInt(1, 10);
-ps.setString(2, "john");
+pstmt.setString(2, "john");
 ResultSet rs = pstmt.executeQuery();
 ```
 
@@ -218,3 +218,55 @@ CallableStatement is a special JDBC interface used to call Stored Procedures in 
 | **Real-time analytics** | ⚠️ Moderate | ✅ Excellent |
 
 ---
+
+## 4. PUT vs PATCH:
+
+### PUT Method
+- **Purpose**: Full replacement of a resource
+- **Requirement**: Must send the entire object
+- **Behavior**: Creates a new record if the record doesn't exist (idempotent)
+
+#### Example - Initial Resource
+```json
+{
+  "id": 1,
+  "name": "Yogesh",
+  "email": "ymangal@gmail.com",
+  "isActive": true
+}
+```
+
+#### Example - PUT Request to Update Name
+**Endpoint**: `PUT /users/1`
+
+**Request Body** (must include ALL fields):
+```json
+{
+  "id": 1,
+  "name": "Yogesh Mangal",
+  "email": "ymangal@gmail.com",
+  "isActive": true
+}
+```
+
+**Note**: Even if you're updating just one field, you must send the entire object.
+
+---
+
+### PATCH Method
+- **Purpose**: Partial update of a resource
+- **Requirement**: Send only the specific fields to update
+- **Behavior**: Usually does nothing if the resource doesn't exist
+
+#### Example - PATCH Request to Update Name
+**Endpoint**: `PATCH /users/1`
+
+**Request Body** (only the field to update):
+```json
+{
+  "name": "Yogesh Mangal"
+}
+```
+
+---
+
