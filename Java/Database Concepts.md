@@ -347,3 +347,85 @@ If you want a user's name and email only from a GraphQL API:
 
 ---
 
+## 7. Normalization vs Denormalization in Databases:
+
+### 🔹 Normalization
+
+**Normalization** is the process of **organizing data** in a database to:
+
+- Reduce **data redundancy** (duplicate data)
+- Improve **data integrity** (consistency)
+
+It typically involves splitting a large table into **smaller, related tables** and defining relationships between them.
+
+---
+
+#### ✅ Example of Normalization
+
+**Unnormalized Table:**
+
+| ID | Name   | Orders        |
+|----|--------|--------------|
+| 1  | John   | Order1,Order2|
+| 2  | Yogesh | Order3       |
+
+**After Normalization (2 Tables):**
+
+**Customers Table**
+
+| ID | Name   |
+|----|--------|
+| 1  | John   |
+| 2  | Yogesh |
+
+**Orders Table**
+
+| OrderID | CustomerID |
+|--------|------------|
+| Order1 | 1          |
+| Order2 | 1          |
+| Order3 | 2          |
+
+---
+
+### 🔹 Denormalization
+
+**Denormalization** is the process of **combining normalized tables back together** to:
+
+- Reduce the number of **joins**
+- Improve **read performance**
+
+It usually introduces **some redundancy** but makes **queries faster** in read-heavy systems.
+
+---
+
+#### ✅ Example of Denormalization
+
+Combining `Customers` and `Orders` tables back into one table for faster retrieval.
+
+| ID | Name   | OrderID |
+|----|--------|--------|
+| 1  | John   | Order1 |
+| 1  | John   | Order2 |
+| 2  | Yogesh | Order3 |
+
+---
+
+### 📊 Quick Comparison
+
+| Aspect            | Normalization                          | Denormalization             |
+|------------------|--------------------------------------|---------------------------|
+| Purpose          | Eliminate redundancy, ensure consistency | Improve read performance |
+| Data Redundancy  | ❌ Reduced                            | ✅ Introduced             |
+| Write Operations | Faster (less data duplication)        | Slower (must update duplicates) |
+| Read Operations  | Slower (more joins needed)            | Faster (fewer joins)      |
+| Use Case         | OLTP systems (transaction-heavy apps) | OLAP systems (reporting, analytics) |
+
+---
+
+### ✅ Key Takeaway
+
+- **Normalization** → Best for **data consistency** and minimizing storage usage.  
+- **Denormalization** → Best for **performance optimization** when reads are more frequent than writes.
+
+---
