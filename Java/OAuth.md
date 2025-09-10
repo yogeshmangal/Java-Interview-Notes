@@ -47,4 +47,31 @@ When you click on "Login with Google" on a new app, that app uses OAuth to acces
 
 ---
 
+## 4. Callback URL
 
+When creating a custom OAuth application, we need to specify a **Callback URL**.  
+It is the URL where the user will be redirected **after successful authentication** to the data source in OAuth.
+
+---
+
+## 5. Grant Types
+
+A Grant type defines **how the client gets the access token** from the authorization server.
+
+**Types:**
+- **Authorization Code:** (Already covered in OAuth flow) Most common.
+- **Client Credentials:** Machine-to-machine, no user. Used when apps need to access internal APIs.
+- **Implicit:** Token returned directly in browser. ⚠️ Deprecated.
+- **Password (Legacy):** Directly send username & password to app. ⚠️ Not recommended.
+- **Refresh Token:** Used to get new access token after expiry.
+
+**Client ID & Secret Requirement:**
+| Grant Type              | Client ID | Client Secret |
+|-----------------------|-----------|---------------|
+| Authorization Code    | ✅ Yes    | ✅ Yes |
+| Authorization Code + PKCE | ✅ Yes | ❌ No |
+| Client Credentials    | ✅ Yes    | ✅ Yes |
+| Password (Legacy)     | ✅ Yes    | ✅ Yes |
+| Implicit              | ✅ Yes    | ❌ No |
+
+---
