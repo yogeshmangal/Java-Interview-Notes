@@ -75,3 +75,15 @@ A Grant type defines **how the client gets the access token** from the authoriza
 | Implicit              | ✅ Yes    | ❌ No |
 
 ---
+
+## 6. OpenID Connect (OIDC)
+
+**OIDC** is an **authentication layer** built on top of OAuth.
+
+- **OAuth:** Focuses on **authorization** (Can this app access the user's data?).  
+- **OIDC:** Focuses on **authentication** (Who is this user?).
+
+In OIDC, a `/userinfo` endpoint is called to get user details (name, email, etc.).
+
+---
+
