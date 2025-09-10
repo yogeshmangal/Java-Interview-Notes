@@ -647,4 +647,50 @@ The JVM uses the concept of **reachability**:
 - You can request garbage collection manually using **System.gc();** but JVM may ignore it.
 
 ---
- 
+
+## 25. REST vs SOAP
+
+### 🔹 REST (Representational State Transfer)
+
+- **Not a protocol**, but an **architectural style**.
+- Used by different systems (web apps, mobile apps, microservices) to communicate using **HTTP**.
+- **Response format** can be:
+  - JSON
+  - XML
+  - Plain Text
+  - YAML  
+- The format is decided using **`Content-Type`** and **`Accept`** HTTP headers.
+- Lightweight, easy to use, and widely adopted in modern applications.
+
+---
+
+### 🔹 SOAP (Simple Object Access Protocol)
+
+- A **protocol** used for communication between client and server over a network.
+- Always uses **XML** as its message format.
+- Has **strict standards** for message structure.
+- Provides built-in support for **security** (WS-Security) and **transactional reliability**.
+- Heavier and more suited for **enterprise applications** where security and strict contracts are critical.
+
+---
+
+### 📊 REST vs SOAP Comparison
+
+| Aspect           | REST                          | SOAP                          |
+|-----------------|-----------------------------|-----------------------------|
+| Type            | Architectural Style          | Protocol                    |
+| Message Format  | JSON, XML, Plain Text, YAML  | Always XML                  |
+| Flexibility     | ✅ Flexible (lightweight)     | ❌ Strict (heavy)           |
+| Ease of Use     | Simple, easy to implement    | Complex, verbose            |
+| Security        | Relies on HTTPS + custom logic| Built-in WS-Security        |
+| Performance     | Faster (less overhead)       | Slower (XML parsing overhead)|
+| Best For        | Modern web & mobile apps     | Enterprise-grade apps (banking, payment systems) |
+
+---
+
+### ✅ Key Takeaway
+
+- **SOAP** → Protocol, XML-only, strict, secure, heavier (best for enterprise apps).
+- **REST** → Style, lightweight, flexible, supports JSON (best for modern web/mobile apps).
+
+---
