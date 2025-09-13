@@ -63,7 +63,8 @@ Object-Oriented Programming is a methodology to design a program using classes a
 - **Inheritance**: A sports car inherits features from a general car
 - **Polymorphism**: A remote can operate different devices (TV, AC) using the same buttons
 - **Abstraction**: Driving a car without knowing the internal mechanics
-- **Encapsulation**: An ATM hides internal operations but provides buttons for users
+- **Encapsulation**: An ATM hides internal operations but provides buttons for users   
+[OOPS Concepts] https://github.com/yogeshmangal/Java-Interview-Notes/blob/main/Java/OOPS%20Concepts.md
 
 ## 6. What is the String Pool?
 - The String Pool is a special area in the Java heap memory where string literals are stored.

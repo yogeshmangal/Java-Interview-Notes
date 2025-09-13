@@ -37,7 +37,7 @@ Car, plus extra features like `turboBoost()`.
 ## 4. Polymorphism
 
 **Polymorphism** means "many forms" -- the ability to use a single
-interface with different implementations.
+interface with different implementations. Polymorphism has 2 types - Method Overloading and Method Overriding.
 
 **Real-life Example:**\
 The `start()` method in "Car" and "Bike" classes may work differently,
@@ -48,7 +48,7 @@ but both are called `start()`.
 ## 5. Abstraction
 
 **Abstraction** hides implementation details and shows only the
-essential features.
+essential features. It is implemented using Interface and Abstract class.
 
 **Real-life Example:**\
 When you drive a car, you just press the accelerator. You don't need to
