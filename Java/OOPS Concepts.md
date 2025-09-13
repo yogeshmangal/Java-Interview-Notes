@@ -1,6 +1,6 @@
 # OOPS Concepts
 
-Object-Oriented Programming is a methodology to design a program using classes and objects. It provides the following core concepts:
+**Object-Oriented Programming(OOPS)** is a methodology to design a program using classes and objects. It provides the following core concepts:
 
 ## 1. Class
 
@@ -59,7 +59,7 @@ know how the engine internally increases speed.
 ## 6. Encapsulation
 
 **Encapsulation** means bundling data and methods inside a class and
-restricting direct access(We cannot modify the variables directly, we have to use getters() and setters() methods.)
+restricting direct access (We cannot modify the variables directly, we have to use getters() and setters() methods.)
 
 **Real-life Example:**\
 Car's `speed` cannot be directly changed by outside code; it can be
