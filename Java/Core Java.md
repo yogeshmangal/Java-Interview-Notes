@@ -706,3 +706,30 @@ Its main purpose is to **mark or tag a class**, providing metadata or a signal t
 - **REST** → Style, lightweight, flexible, supports JSON (best for modern web/mobile apps).
 
 ---
+
+## 27. Access Modifiers in Java
+
+Java has four access modifiers that control the visibility and accessibility of classes, methods, and variables:  
+`default`, `private`, `protected`, `public`
+
+### a) private
+- **Scope:** Only within the same class  
+- **Usage:** Most restrictive access level  
+- **Key points:** Cannot be accessed from subclasses, other classes in the same package, or outside the package.
+
+### b) default (Package-Private)
+- **Scope:** Within the same package only  
+- **Usage:** Applied when no access modifier is specified  
+- **Key points:** Accessible to all classes within the same package, but not to classes outside the package (even subclasses).
+
+### c) protected
+- **Scope:** Within the same package AND in subclasses (even if in different packages)  
+- **Usage:** Used when you want subclasses to access members  
+- **Key points:** More accessible than default because subclasses in other packages can access protected members.
+
+### d) public
+- **Scope:** Everywhere (no restrictions)  
+- **Usage:** Least restrictive access level  
+- **Key points:** Accessible from any class, any package.
+
+---
