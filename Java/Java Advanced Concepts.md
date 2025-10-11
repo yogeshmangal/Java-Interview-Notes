@@ -54,7 +54,7 @@ Server → [InputStream] → Your Program → [OutputStream] → Local File
 
 ---
 
-## 2. What is Serialization and Deserialization?
+## 2. What is Serialization, Deserialization and transient keyword ?
 
 ### Serialization
 The process of writing the state of an object to a file is called **Serialization**.  
@@ -95,7 +95,7 @@ public class SerializableDemo {
     }
 }
 ```
-### Output
+#### Output
 ```java
 10--20
 ```
@@ -142,5 +142,47 @@ Exception in thread "main" java.io.NotSerializableException: Dog
     at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1196)
     at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:355)
     at SerializableDemo.main(SerializableDemo.java:15)
+```
+---
+
+### transient Keyword
+
+`transient` is an **access modifier** applicable **only for variables**.  
+
+During **serialization**, if we don’t want to save the value of a particular variable (for example, sensitive data like passwords), we should mark it as `transient`.
+
+At the time of serialization, the **JVM ignores the original value** of transient variables and **stores their default values** in the file.  
+Hence, `transient` means **"do not serialize"**.
+
+### Example
+```java
+import java.io.*;
+
+class Dog implements Serializable {
+    int i = 10;
+    transient int j = 20; // 'j' will not be serialized and the default value 0 will be saved at the time of Serialization
+}
+
+public class SerializableDemo {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Dog d1 = new Dog();
+
+        // Serialization
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\Yogesh Mangal\\Desktop\\abc.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(d1);
+
+        // Deserialization
+        FileInputStream fis = new FileInputStream("C:\\Users\\Yogesh Mangal\\Desktop\\abc.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Dog d2 = (Dog) ois.readObject();
+
+        System.out.println(d2.i + "--" + d2.j);
+    }
+}
+```
+#### Output
+```java
+10--0
 ```
 ---
