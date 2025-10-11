@@ -56,13 +56,13 @@ Server → [InputStream] → Your Program → [OutputStream] → Local File
 
 ## 2. What is Serialization, Deserialization and transient keyword ?
 
-### Serialization
+### a) Serialization
 The process of writing the state of an object to a file is called **Serialization**.  
 Strictly speaking, it is the process of converting an object from a **Java-supported form** to a **file-supported** or **network-supported** form.  
 
 We can achieve serialization using `FileOutputStream` and `ObjectOutputStream` classes.
 
-### Deserialization
+### b) Deserialization
 The process of reading the state of an object from a file is called **Deserialization**.  
 Strictly speaking, it is the process of converting an object from a **file** or **network-supported** form into a **Java-supported** form.  
 
@@ -145,7 +145,7 @@ Exception in thread "main" java.io.NotSerializableException: Dog
 ```
 ---
 
-### transient Keyword
+### c) transient Keyword
 
 `transient` is an **access modifier** applicable **only for variables**.  
 
@@ -185,4 +185,40 @@ public class SerializableDemo {
 ```java
 10--0
 ```
+---
+
+### d) static vs transient Keyword
+
+- `static` variables belong to the **class**, not to any particular object.  
+- Serialization saves **only the object’s state** (i.e., instance variables).  
+- Hence, `static` variables are **never serialized**, irrespective of whether you mark them `transient` or not.  
+
+📘 **Therefore:**  
+Declaring a `static` variable as `transient` has **no effect at all**.  
+Both mean “don’t serialize me,” but `static` already guarantees that.
+
+---
+
+### e) final vs transient Keyword
+
+- `final` variables are **constant per object**, and their values are stored in the object’s state.  
+- Hence, **final variables are serialized** like normal instance variables.  
+- Declaring a variable as both `final` and `transient` means:
+  - It **won’t be serialized** (because of `transient`).
+  - But since it’s `final`, its **value must be initialized at declaration** — and **that value will be restored** by the constructor or class definition, not from the serialized stream.
+
+📘 **Therefore:**  
+Declaring a `final` variable as `transient` has **no practical use**, because its value will be reinitialized to the default defined one.
+
+---
+
+### ✅ Summary Table
+
+| Declaration | Serialized? | Output (i--j) | Explanation |
+|--------------|--------------|----------------|--------------|
+| `int i = 10; int j = 20;` | ✅ both | `10--20` | Normal case |
+| `int i = 10; transient int j = 20;` | `i` only | `10--0` | `j` not serialized, gets default `0` |
+| `transient static int i = 10; transient int j = 20;` | none | `10--0` | `i` static → class value, not serialized; `j` transient → skipped |
+| `transient final int i = 10; transient int j = 20;` | `i` (as constant) | `10--0` | `i` comes from declaration (since final); `j` skipped |
+
 ---
