@@ -53,3 +53,5 @@ Server → [InputStream] → Your Program → [OutputStream] → Local File
 - **OutputStream**: Writing bytes (data going out)
 
 ---
+
+## 2. What is Serialization and Deserialization?

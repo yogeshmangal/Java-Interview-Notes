@@ -650,7 +650,17 @@ The JVM uses the concept of **reachability**:
 
 ---
 
-## 25. REST vs SOAP
+## 25. Marker Interface
+
+A **Marker Interface** in Java is an **empty interface** — it contains **no methods, fields, or constants**.  
+Its main purpose is to **mark or tag a class**, providing metadata or a signal to the JVM or other components about how to treat instances of that class.  
+
+**Examples:**  
+`Serializable`, `Cloneable`, `Remote`
+
+---
+
+## 26. REST vs SOAP
 
 ### 🔹 REST (Representational State Transfer)
 
