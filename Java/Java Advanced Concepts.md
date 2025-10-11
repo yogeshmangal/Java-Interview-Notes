@@ -222,3 +222,34 @@ Declaring a `final` variable as `transient` has **no practical use**, because it
 | `transient final int i = 10; transient int j = 20;` | `i` (as constant) | `10--0` | `i` comes from declaration (since final); `j` skipped |
 
 ---
+
+## 3. What is MetaSpace in Java?
+
+**MetaSpace** refers to the memory area where **metadata related to classes and methods** is stored.  
+This metadata includes information about **classes, interfaces, methods**, and other structures needed by the JVM to execute Java programs.
+
+- **Before Java 8:** This memory was called **Permanent Generation (PermGen)**.  
+  PermGen had limitations, such as memory leaks and insufficient space for class metadata.
+
+- **From Java 8 onwards:** MetaSpace replaced PermGen.  
+  - Dynamically allocated by the JVM  
+  - Can expand or shrink based on the application's demand for class metadata  
+  - Managed by the **garbage collector**, just like heap memory  
+  - Improves memory management and scalability for Java applications
+
+---
+
+## 4. What is Reflection in Java?
+
+**Reflection** in Java is a powerful feature that allows a program to **inspect and manipulate classes, methods, fields, and constructors at runtime**, even if their names are not known at compile time.  
+Essentially, it lets Java programs **“look into themselves”** and modify behavior dynamically.
+
+### Why Reflection is Useful
+
+- **Frameworks & Libraries:** Many frameworks like Spring, Hibernate, and JUnit use reflection to instantiate classes or inject dependencies.  
+- **Dynamic Behavior:** Enables writing code that works with unknown classes or plugins at runtime.  
+- **Debugging / Tools:** IDEs, debuggers, and testing tools often use reflection to inspect objects.
+
+**In short:** Reflection = introspection + dynamic manipulation of classes at runtime.
+
+---
